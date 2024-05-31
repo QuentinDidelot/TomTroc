@@ -68,6 +68,21 @@ p {
 }
 
 /*
+* Bouton
+*/
+
+.button_type_1 {
+    background-color: var(--mainGreenColor);
+    color: white;
+    text-decoration: none;
+    padding: 20px 40px;
+    font-size: 16px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+
+/*
 * Header
 */
 
@@ -102,8 +117,12 @@ header > nav {
 /* 
 * Div
 */
-
-
+.caption{
+    display: flex;
+    justify-content: end;
+    font-size: 13px;
+    color: darkgrey;
+}
 
 .join_us {
     background-color: var(--backgroundColorOne);
@@ -136,17 +155,4 @@ header > nav {
 }
 
 
-/*
-* Bouton
-*/
-
-.button_type_1 {
-    background-color: var(--mainGreenColor);
-    color: white;
-    text-decoration: none;
-    padding: 20px 40px;
-    font-size: 16px;
-    border-radius: 10px;
-    display: inline-block;
-}
 

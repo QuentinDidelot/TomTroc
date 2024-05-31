@@ -40,7 +40,8 @@
                 </div>
 
                 <div class="join_picture">
-                    <img class="home_picture" src="./img/home_picture.jpg">
+                    <img class="home_picture" src="./img/home_picture.jpg" alt="homme entouré de livre, en pleine lecture">
+                    <div class="caption">Hamza</div>
                 </div>
             </div>
 
