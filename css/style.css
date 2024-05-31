@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+/**
+ * Reset css.
+ */
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/**
+ * Déclaration des couleurs.
+ */
+
+ :root{
+    --backgroundColorOne : #F5F3EF;
+    --backgroundColorTwo : #fff; 
+    --mainGreenColor : #00AC66;
+ }
+
+/**
+* Valeur par défaut de toutes les balises
+*/
+
+
+body {
+    font-family: "Roboto", "sans serif";
+}
+
+
+h1 {
+    font-family: "Lora", serif;
+    color: var(--mainGreenColor);
+    margin-right: 50px;
+} 
+
+
+h2 {
+    font-family: "Lora", serif;
+    font-size: xx-large;
+    font-weight: 500; 
+}
+/*
+h3 {
+
+}
+*/
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+p {
+    margin: 15px 15px 15px 0 ;
+}
+/*
+* Images
+*/
+
+.logo {
+    max-width: 55px;
+    margin-right: 25px;
+}
+
+/*
+* Header
+*/
+
+header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: var(--backgroundColorOne);
+    padding-bottom: 50px;
+}
+
+header > nav {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.nav_right > a {
+    margin-left: 50px;
+}
+
+.nav_left {
+    display: flex;
+    align-items: center;
+    padding-right: 100px;
+}
+.nav_left > a {
+    margin-left: 50px;
+}
+
+/* 
+* Div
+*/
+
+
+
+.join_us {
+    background-color: var(--backgroundColorOne);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75vh; 
+    padding: 20px;
+}
+
+.join {
+    max-width: 370px;
+    margin-right: 75px;
+}
+
+.join h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.join p {
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+.join_picture .home_picture {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+
+/*
+* Bouton
+*/
+
+.button_type_1 {
+    background-color: var(--mainGreenColor);
+    color: white;
+    text-decoration: none;
+    padding: 20px 40px;
+    font-size: 16px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
