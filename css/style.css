@@ -17,8 +17,10 @@
 
  :root{
     --backgroundColorOne : #F5F3EF;
-    --backgroundColorTwo : #fff; 
+    --backgroundColorTwo : #f9f9f9; 
     --mainGreenColor : #00AC66;
+    --legendColor : darkgrey;
+    --hoverButtonColor : #006D41;
  }
 
 /**
@@ -58,14 +60,7 @@ a {
 p {
     margin: 15px 15px 15px 0 ;
 }
-/*
-* Images
-*/
 
-.logo {
-    max-width: 55px;
-    margin-right: 25px;
-}
 
 /*
 * Bouton
@@ -74,13 +69,17 @@ p {
 .button_type_1 {
     background-color: var(--mainGreenColor);
     color: white;
+    display: inline-block;
     text-decoration: none;
     padding: 20px 40px;
     font-size: 16px;
     border-radius: 10px;
-    display: inline-block;
+    transition: background-color 0.3s ease;
 }
 
+.button_type_1:hover {
+    background-color: var(--hoverButtonColor);
+}
 
 /*
 * Header
@@ -114,15 +113,14 @@ header > nav {
     margin-left: 50px;
 }
 
-/* 
-* Div
-*/
-.caption{
-    display: flex;
-    justify-content: end;
-    font-size: 13px;
-    color: darkgrey;
+.logo {
+    max-width: 55px;
+    margin-right: 25px;
 }
+/*
+* Premier bloc : Rejoignez nos lecteurs passionnées
+*/
+
 
 .join_us {
     background-color: var(--backgroundColorOne);
@@ -154,5 +152,80 @@ header > nav {
     border-radius: 5px;
 }
 
+.caption{
+    display: flex;
+    justify-content: end;
+    font-size: 13px;
+    color: var(--legendColor);
+}
 
 
+/*
+* Second bloc : Les derniers livres ajoutés
+*/
+
+.books_container{
+    display: flex;
+    justify-content: center;
+    gap: 45px;
+    padding-bottom: 15px;
+}
+
+.last_books {
+    text-align: center;
+    padding: 50px 0;
+    background-color: var(--backgroundColorTwo);
+}
+
+.last_books > h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+.book_title{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 180px;
+}
+
+.author{
+    font-size: small;
+}
+
+.sold_by{
+    font-size: 11px;
+    padding-top: 20px;
+}
+
+.books_card {
+    background-color: #FFFF;
+    border-radius: 0 0 10px 10px;
+    width: 215px;
+    height: 340px;
+    text-align: left;
+}
+
+.books_card img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+}
+
+.books_card h3 {
+    font-size: 17px;
+    font-weight: 400;
+    margin: 10px 0 5px 15px;
+}
+
+.books_card p {
+    color: var(--legendColor);
+    margin: 10px 0 0 15px;
+}
+
+
+
+.button_container {
+    text-align: center;
+    margin-top: 30px;
+}
