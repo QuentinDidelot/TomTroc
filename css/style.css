@@ -21,6 +21,7 @@
     --mainGreenColor : #00AC66;
     --legendColor : darkgrey;
     --hoverButtonColor : #006D41;
+    --textColor : rgb(99, 97, 97);
  }
 
 /**
@@ -43,14 +44,8 @@ h1 {
 h2 {
     font-family: "Lora", serif;
     font-size: xx-large;
-    font-weight: 500; 
+    font-weight: lighter;
 }
-/*
-h3 {
-
-}
-*/
-
 
 a {
     text-decoration: none;
@@ -79,6 +74,28 @@ p {
 
 .button_type_1:hover {
     background-color: var(--hoverButtonColor);
+}
+
+.button_type_2 {
+    border: solid 1px var(--mainGreenColor);
+    color: var(--mainGreenColor);
+    display: inline-block;
+    text-decoration: none;
+    padding: 19px 39px;
+    font-size: 16px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.button_type_2:hover {
+    background-color: var(--hoverButtonColor);
+    color: #FFFF;
+    border-color: var(--hoverButtonColor);
+}
+
+.button_container {
+    text-align: center;
+    margin-top: 50px;
 }
 
 /*
@@ -173,7 +190,7 @@ header > nav {
 
 .last_books {
     text-align: center;
-    padding: 50px 0;
+    padding: 70px 0;
     background-color: var(--backgroundColorTwo);
 }
 
@@ -224,8 +241,102 @@ header > nav {
 }
 
 
+/*
+* Troisième bloc : Comment ça marche ?
+*/
 
-.button_container {
+.how_it_works {
     text-align: center;
-    margin-top: 30px;
+    padding: 70px 0;
+    background-color: var(--backgroundColorOne);
+}
+
+.how_it_works > h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+.how_it_works > p {
+    color: var(--textColor);
+    white-space: pre-line;
+    padding-bottom: 25px;
+}
+.steps_container{
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.step{
+    width: 245px;
+    background-color: #FFF;
+    padding: 30px 20px 30px 20px;
+    text-align: center;
+    border-radius: 5%;
+}
+
+/*
+* Quatrième bloc : la bannière
+*/
+
+.banner > img {
+    width: 100%;
+    max-height: 230px;
+    object-fit: cover;
+}
+
+/*
+* Cinquième bloc : nos valeurs
+*/
+
+.values{
+    text-align: center;
+    padding: 70px 0;
+    background-color: var(--backgroundColorOne);
+}
+
+.values_container > h2 {
+    font-size: 36px;
+    margin-bottom: 35px;
+}
+
+.values_container{
+    color: var(--textColor);
+    width: 23.5%;
+    margin: 0px auto;
+    text-align: left;
+}
+
+.signature_container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.signature {
+    font-size: 13px;
+    color: var(--legendColor);
+}
+
+/*
+* Footer
+*/
+
+footer{
+    height: 70px;
+    background-color: var(--backgroundColorTwo);
+    align-content: center;
+}
+
+.logo_footer{
+    width: 30px;
+}
+
+
+.links_container { 
+    display: flex;
+    justify-content: flex-end;
+    gap: 41px;
+    padding-right: 55px;
+    font-size: smaller;
+    color: var(--textColor);
 }
