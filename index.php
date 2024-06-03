@@ -11,10 +11,26 @@ $action = Utils::request('action', 'home');
 try {
     // Pour chaque action, on appelle le bon contrôleur et la bonne méthode.
     switch ($action) {
+
+
         // Pages accessibles à tous.
         case 'home':
             $bookController = new BookController();
             $bookController->showHome();
+            break;
+
+
+
+        // Section admin & connexion.    
+        
+        case 'inscriptionForm':
+            $adminController = new AdminController();
+            $adminController->displayInscriptionForm();
+            break;
+
+        case 'connectionForm':
+            $adminController = new AdminController();
+            $adminController->displayConnectionForm();
             break;
 
             default:
@@ -25,3 +41,4 @@ try {
     $errorView = new View('Erreur');
     $errorView->render('errorPage', ['errorMessage' => $e->getMessage()]);
 }
+?>
