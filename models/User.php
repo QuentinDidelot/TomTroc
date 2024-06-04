@@ -86,7 +86,7 @@
      * Setter pour l'image de profil.
      * @param string $profileImage
      */
-    public function setProfileImage(string $profileImage) : void 
+    public function setProfileImage(?string $profileImage) : void 
     {
         $this->profileImage = $profileImage;
     }

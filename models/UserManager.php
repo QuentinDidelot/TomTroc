@@ -22,16 +22,13 @@ class UserManager extends AbstractEntityManager {
         // Hachage du mot de passe
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-        // Image de profile de base
-        $defaultProfileImage = 'img\icones\profil_picture_basic.png';
 
         // Insertion dans la base de données
-        $stmt = $this->db->getPDO()->prepare("INSERT INTO user (pseudo, email, password, profile_image) VALUES (:pseudo, :email, :password, :profileImage )");
+        $stmt = $this->db->getPDO()->prepare("INSERT INTO user (pseudo, email, password) VALUES (:pseudo, :email, :password)");
         $result = $stmt->execute([
             'pseudo' => $pseudo,
             'email' => $email,
             'password' => $hashedPassword,
-            'profileImage'=> $defaultProfileImage
         ]);
 
         if ($result) {
