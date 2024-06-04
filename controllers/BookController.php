@@ -8,7 +8,6 @@ class BookController
      */
     public function showHome() : void
     {
-
         $bookController = new BookController(); 
         $view = new View("Accueil");
         $view->render("home");

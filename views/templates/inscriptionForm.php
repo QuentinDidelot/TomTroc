@@ -2,9 +2,9 @@
     <div class="left_half_connexion">
         <div class="form_container">
             <h2 class="form_title">Inscription</h2>
-            <form action="#" method="post">
+            <form action="index.php?action=inscriptionUser" method="post">
                 <label for="pseudo">Pseudo :</label>
-                <input class="form_input" type="email" id="email" name="email" required>
+                <input class="form_input" type="pseudo" id="pseudo" name="pseudo" required>
 
 
                 <label for="email">Adresse mail :</label>

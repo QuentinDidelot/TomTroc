@@ -20,7 +20,6 @@ try {
             break;
 
 
-
         // Section admin & connexion.    
         
         case 'inscriptionForm':
@@ -28,13 +27,28 @@ try {
             $adminController->displayInscriptionForm();
             break;
 
+        case 'inscriptionUser':
+            $adminController = new AdminController();
+            $adminController->inscriptionUser();
+            break;
+
         case 'connectionForm':
             $adminController = new AdminController();
             $adminController->displayConnectionForm();
             break;
 
-            default:
-            throw new Exception("La page demandée n'existe pas.");
+        case 'connectUser': 
+            $adminController = new AdminController();
+            $adminController->connectUser();
+            break;    
+
+        case 'disconnectUser':
+            $adminController = new AdminController();
+            $adminController->disconnectUser();
+            break;
+            
+        default:
+        throw new Exception("La page demandée n'existe pas.");
     }
 } catch (Exception $e) {
     // En cas d'erreur, on affiche la page d'erreur.

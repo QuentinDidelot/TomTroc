@@ -2,7 +2,7 @@
     <div class="left_half_connexion">
         <div class="form_container">
             <h2 class="form_title">Connexion</h2>
-            <form action="#" method="post">
+            <form action="index.php?action=connectUser" method="post">
                 <label for="email">Adresse mail :</label>
                 <input class="form_input" type="email" id="email" name="email" required>
                 

@@ -26,7 +26,14 @@
                 <div class="nav_right">
                     <a href="" ><i class="fa-regular fa-comments"></i> Messagerie</a>
                     <a href=""><i class="fa-regular fa-user"></i> Mon compte</a>
-                    <a href="index.php?action=connectionForm" >Connexion</a>
+                    <?php 
+                    // Si on est connecté, on affiche le bouton de déconnexion, sinon, on affiche le bouton de connexion : 
+                    if (isset($_SESSION['user'])) {
+                        echo '<a href="index.php?action=disconnectUser">Déconnexion</a>';
+                    } else {
+                        echo '<a href="index.php?action=connectionForm">Connexion</a>';
+                    }
+                     ?>
                 </div> 
             </nav>
 
