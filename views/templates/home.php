@@ -16,14 +16,17 @@
 
                 <div class="books_container">
 
-                    <a href="" class="books_link"> 
-                        <article class="books_card">
-                            <img src="img/books/le_trone_de_fer_1.jpg" alt="Le trone de fer, tome 1">
-                            <h3 class="book_title">Le trone de fer, tome 1</h3>
-                            <p class="author">George R.R. Martin</p>
-                            <p class="sold_by">Vendu par : .....</p>
-                        </article>
-                    </a>
+                        <a href="" class="books_link"> 
+
+                            <article class="books_card">
+                            <div class="cart_background">
+                                <img src="img/books/le_trone_de_fer_1.jpg" alt="Le trone de fer, tome 1">
+                            </div>
+                                <h3 class="book_title">Le trone de fer, tome 1</h3>
+                                <p class="author">George R.R. Martin</p>
+                                <p class="sold_by">Vendu par : .....</p>
+                            </article>
+                        </a>
 
                     <a href="" class="books_link"> 
                         <article class="books_card">

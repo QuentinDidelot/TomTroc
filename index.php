@@ -24,6 +24,11 @@ try {
             $bookController->showAllBook();
             break;
 
+        case 'showBooksByTitle':
+            $bookController = new BookController();
+            $bookController->showBooksByTitle();
+            break;
+
         // Section admin & connexion.    
         
         case 'inscriptionForm':

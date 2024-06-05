@@ -24,4 +24,19 @@ class BookController
         $view = new View("Tous nos livres");
         $view->render("allBook", ['books' => $books]);
     }
+
+    /**
+     * Affiche la page avec les livres filtrés par titre.
+     * @return void
+     */
+    public function showBooksByTitle() : void
+    {
+        $titleSearch = isset($_GET['title']) ? $_GET['title'] : '';
+        
+        $bookManager = new BookManager(); 
+        $books = $bookManager->getBooksByTitle($titleSearch);
+
+        $view = new View("Livres filtrés par titre");
+        $view->render("allBook", ['books' => $books]);
+    }
 }
