@@ -19,6 +19,10 @@ try {
             $bookController->showHome();
             break;
 
+        case 'allBook':
+            $bookController = new BookController();
+            $bookController->showAllBook();
+            break;
 
         // Section admin & connexion.    
         

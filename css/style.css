@@ -243,7 +243,7 @@ header > nav {
 .books_card img {
     width: 100%;
     height: 210px;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .books_card h3 {
@@ -334,29 +334,6 @@ header > nav {
     color: var(--legendColor);
 }
 
-/*
-* Footer
-*/
-
-footer{
-    height: 70px;
-    background-color: #FFF;
-    align-content: center;
-}
-
-.logo_footer{
-    width: 30px;
-}
-
-
-.links_container { 
-    display: flex;
-    justify-content: flex-end;
-    gap: 41px;
-    padding-right: 55px;
-    font-size: smaller;
-    color: var(--textColor);
-}
 
 /******************************************
 *************** PAGE CONNEXION ************
@@ -430,3 +407,52 @@ label {
 }
 
 
+/******************************************
+******** PAGE AVEC TOUS LES LIVRES ********
+******************************************/
+
+.all_books_container{
+    background: var(--backgroundColorTwo);
+}
+
+.all_books{
+    display: grid;
+    grid-template-columns: repeat(4, 0fr);
+    justify-content: center;
+    gap: 50px;
+    background-color: var(--backgroundColorTwo);
+}
+
+
+
+
+
+
+
+
+
+
+
+/******************************************
+*************** FOOTER ************
+******************************************/
+
+footer{
+    height: 70px;
+    background-color: #FFF;
+    align-content: center;
+}
+
+.logo_footer{
+    width: 30px;
+}
+
+
+.links_container { 
+    display: flex;
+    justify-content: flex-end;
+    gap: 41px;
+    padding-right: 55px;
+    font-size: smaller;
+    color: var(--textColor);
+}

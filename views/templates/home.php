@@ -2,7 +2,7 @@
                 <div class="join">
                     <h2>Rejoignez nos lecteurs passionnés </h2>
                     <p> Donnez une nouvelle vie à vos livres en les échangeant avec d'autres amoureux de la lecture. Nous croyons en la magie du partage de connaissances et d'histoires à travers les livres.</p>
-                    <a href="" class="button_type_1" > Découvrir </a>
+                    <a href="index.php?action=allBook" class="button_type_1" > Découvrir </a>
                 </div>
 
                 <div class="join_picture">
@@ -16,7 +16,7 @@
 
                 <div class="books_container">
 
-                    <a href="" class="last_books_link"> 
+                    <a href="" class="books_link"> 
                         <article class="books_card">
                             <img src="img/books/le_trone_de_fer_1.jpg" alt="Le trone de fer, tome 1">
                             <h3 class="book_title">Le trone de fer, tome 1</h3>
@@ -25,7 +25,7 @@
                         </article>
                     </a>
 
-                    <a href="" class="last_books_link"> 
+                    <a href="" class="books_link"> 
                         <article class="books_card">
                             <img src="img/books/le_silmarillion.jpg" alt="Le Silmarillion">
                             <h3 class="book_title">Le Silmarillion</h3>
@@ -34,7 +34,7 @@
                         </article>
                     </a>
 
-                    <a href="" class="last_books_link"> 
+                    <a href="" class="books_link"> 
                         <article class="books_card">
                             <img src="img/books/harry_potter_1.jpg" alt="Harry Potter, tome 1">
                             <h3 class="book_title">Harry Potter à l'école des sorciers</h3>
@@ -43,7 +43,7 @@
                         </article>
                     </a>
 
-                    <a href="" class="last_books_link"> 
+                    <a href="" class="books_link"> 
                         <article class="books_card">
                             <img src="img/books/the_witcher_1.jpg" alt="The Witcher, tome 1">
                             <h3 class="book_title">The Witcher, tome 1</h3>
@@ -54,7 +54,7 @@
                 </div>  
 
                 <div class="button_container">
-                    <a href="" class="button_type_1" > Voir tous les livres </a>
+                    <a href="index.php?action=allBook" class="button_type_1" > Voir tous les livres </a>
                 </div>
 
             </section>
@@ -82,7 +82,7 @@
                 </div>
 
                 <div class="button_container">
-                    <a href="" class="button_type_2" > Voir tous les livres </a>
+                    <a href="index.php?action=allBook" class="button_type_2" > Voir tous les livres </a>
                 </div>
             </section>
 

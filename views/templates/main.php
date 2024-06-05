@@ -20,7 +20,7 @@
                     <img class="logo" src="./img/icones/header.png" alt="Logo TomTroc (TT)">
                     <h1> Tom Troc </h1> 
                     <a href="index.php?action=home">Accueil</a>
-                    <a href="" >Nos livres à l'échange</a>
+                    <a href="index.php?action=allBook" >Nos livres à l'échange</a>
                 </div>
 
                 <div class="nav_right">
