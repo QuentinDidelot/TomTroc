@@ -30,7 +30,7 @@
                 </a>
             <?php } ?>
         <?php } else { ?>
-            <p>Aucun livre trouvé.</p>
+            <p class="erreur">Aucun livre trouvé.</p>
         <?php } ?>
     </div>
 </div>
