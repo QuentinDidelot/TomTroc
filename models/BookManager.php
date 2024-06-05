@@ -51,4 +51,25 @@ class BookManager extends AbstractEntityManager{
         $result->execute();
         return $result->fetchAll();
     }
+
+    /**
+     * Récupère les trois derniers livres ajoutés avec leur propriétaire.
+     * @return array : Un tableau d'objets Book.
+     */
+    public function getLastFourBooks() : array
+    {
+        $sql = "SELECT 
+                    book.*, user.pseudo 
+                FROM book
+                LEFT JOIN user ON user.id = book.user_id
+                WHERE book.availability = 'Disponible'
+                ORDER BY book.id DESC
+                LIMIT 4";
+
+        $result = $this->db->getPDO()->prepare($sql);
+
+        $result->execute();
+        return $result->fetchAll();
+    }
+
 }

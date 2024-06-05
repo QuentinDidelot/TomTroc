@@ -33,6 +33,10 @@ body {
     font-family: "Roboto", "sans serif";
 }
 
+main {
+    min-height: 53em;
+    background-color: var(--backgroundColorTwo);
+}
 
 h1 {
     font-family: "Lora", serif;

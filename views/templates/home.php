@@ -12,52 +12,26 @@
             </section>
 
             <section class="last_books">
-                <h2> Les derniers livres ajoutés </h2>
+
+                <h2>Les derniers livres ajoutés</h2>
 
                 <div class="books_container">
-
-                        <a href="" class="books_link"> 
-
+                    <?php foreach ($lastFourBooks as $book) { ?>
+                        <a href="" class="books_link">
                             <article class="books_card">
-                            <div class="cart_background">
-                                <img src="img/books/le_trone_de_fer_1.jpg" alt="Le trone de fer, tome 1">
-                            </div>
-                                <h3 class="book_title">Le trone de fer, tome 1</h3>
-                                <p class="author">George R.R. Martin</p>
-                                <p class="sold_by">Vendu par : .....</p>
+                                <div class="cart_background">
+                                    <img src="<?= $book['image'] ?>" alt="<?= $book['title'] ?>">
+                                </div>
+                                <h3 class="book_title"><?= $book['title'] ?></h3>
+                                <p class="author"><?= $book['author'] ?></p>
+                                <p class="sold_by">Vendu par : <?= $book['pseudo'] ?></p>
                             </article>
                         </a>
-
-                    <a href="" class="books_link"> 
-                        <article class="books_card">
-                            <img src="img/books/le_silmarillion.jpg" alt="Le Silmarillion">
-                            <h3 class="book_title">Le Silmarillion</h3>
-                            <p class="author">J.R.R Tolkien</p>
-                            <p class="sold_by">Vendu par : .....</p>
-                        </article>
-                    </a>
-
-                    <a href="" class="books_link"> 
-                        <article class="books_card">
-                            <img src="img/books/harry_potter_1.jpg" alt="Harry Potter, tome 1">
-                            <h3 class="book_title">Harry Potter à l'école des sorciers</h3>
-                            <p class="author">J.K Rowling</p>
-                            <p class="sold_by">Vendu par : .....</p>
-                        </article>
-                    </a>
-
-                    <a href="" class="books_link"> 
-                        <article class="books_card">
-                            <img src="img/books/the_witcher_1.jpg" alt="The Witcher, tome 1">
-                            <h3 class="book_title">The Witcher, tome 1</h3>
-                            <p class="author">Andrzej Sapkowski</p>
-                            <p class="sold_by">Vendu par : .....</p>
-                        </article>
-                    </a>
-                </div>  
+                    <?php } ?>
+                </div>
 
                 <div class="button_container">
-                    <a href="index.php?action=allBook" class="button_type_1" > Voir tous les livres </a>
+                    <a href="index.php?action=allBook" class="button_type_1">Voir tous les livres</a>
                 </div>
 
             </section>

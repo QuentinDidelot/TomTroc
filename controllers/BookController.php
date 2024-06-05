@@ -8,8 +8,11 @@ class BookController
      */
     public function showHome() : void
     { 
+        $bookManager = new BookManager();
+        $lastFourBooks = $bookManager->getLastFourBooks();
+
         $view = new View("Accueil");
-        $view->render("home");
+        $view->render("home",['lastFourBooks' => $lastFourBooks]);
     }
 
     /**
