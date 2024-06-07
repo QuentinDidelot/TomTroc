@@ -24,6 +24,11 @@ try {
             $bookController->showAllBook();
             break;
 
+        case 'bookDetail':
+            $bookController = New BookController();
+            $bookController->showBookDetail();
+            break;
+            
         case 'showBooksByTitle':
             $bookController = new BookController();
             $bookController->showBooksByTitle();

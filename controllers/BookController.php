@@ -28,6 +28,17 @@ class BookController
         $view->render("allBook", ['books' => $books]);
     }
 
+
+    /**
+     * Affiche la page avec les détails du livre choisi
+     * @return void
+     */
+     public function showBookDetail() : void
+    {
+        $view = new View("Détail du livres");
+        $view->render("bookDetail");
+    }
+    
     /**
      * Affiche la page avec les livres filtrés par titre.
      * @return void
