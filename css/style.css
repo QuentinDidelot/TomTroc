@@ -529,9 +529,13 @@ label {
 .detail_container_right {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     width: 70%;
     height: 100%;
+}
+
+.detail_title > h1 {
+    padding: 50px 0 30px 0;
 }
 
 .detail_author {
@@ -541,11 +545,47 @@ label {
     font-weight: 400;
     margin-bottom: 20px;}
 
-.detail_owner {
+.deco_line{
+    padding: 15px 0 15px;
+}  
+
+.detail_description{
+    padding-bottom: 30px;
+    font-size: medium;
+    color: var(--textColor);
+}
+
+.subtitle{
+    font-size: x-small;
+    text-transform: uppercase;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.book_owner {
     display: flex;
     align-items: center;
     font-size: 1em;
-    margin-bottom: 30px;
+    width: 200px;
+    background-color: white;
+    padding: 6px;
+    justify-content: flex-start;
+    border-radius: 30px;
+    margin-bottom: 60px;
+    transition: 0.3s;
+}
+
+.book_owner:hover{
+    color:var(--mainGreenColor);
+    font-size: 17px;
+}
+
+.detail_profile_picture {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    margin-right: 10px; 
+    object-fit: cover; 
 }
 
 /******************************************
