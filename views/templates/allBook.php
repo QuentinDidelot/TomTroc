@@ -6,7 +6,7 @@
 
 <div class="all_books_container">
     <div class="all_books_head">
-        <h2>Nos livres à l'échange</h2>
+        <h1>Nos livres à l'échange</h1>
         <form action="index.php" method="GET" class="search-container">
             <input type="hidden" name="action" value="showBooksByTitle">
             <input type="text" class="search-input" placeholder="Rechercher un livre" name="title" value="<?php echo isset($_GET['title']) ? $_GET['title'] : ''; ?>" onkeydown="if (event.keyCode == 13) this.form.submit()">

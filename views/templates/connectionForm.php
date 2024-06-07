@@ -1,7 +1,7 @@
 <section class="connexion_form">
     <div class="left_half_connexion">
         <div class="form_container">
-            <h2 class="form_title">Connexion</h2>
+            <h1 class="form_title">Connexion</h1>
             <form action="index.php?action=connectUser" method="post">
                 <label for="email">Adresse mail :</label>
                 <input class="form_input" type="email" id="email" name="email" required>

@@ -40,8 +40,9 @@ main {
 
 h1 {
     font-family: "Lora", serif;
-    color: var(--mainGreenColor);
-    margin-right: 50px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
 } 
 
 
@@ -153,6 +154,14 @@ header > nav {
 .logo {
     max-width: 55px;
     margin-right: 25px;
+}
+
+.logo_title{
+    font-family: "Lora", serif;
+    color: var(--mainGreenColor);
+    font-size: 26px;
+    font-weight: 600;
+    margin-right: 50px;
 }
 
 .current_page{
