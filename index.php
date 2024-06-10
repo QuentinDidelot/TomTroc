@@ -34,6 +34,11 @@ try {
             $bookController->showBooksByTitle();
             break;
 
+        case 'myAccount' :
+            $bookController = new BookController();
+            $bookController->showMyAccount();
+            break;
+            
         // Section admin & connexion.    
         
         case 'inscriptionForm':

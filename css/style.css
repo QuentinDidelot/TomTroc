@@ -490,7 +490,7 @@ label {
 
 
 /******************************************
-************** DETAIL DU LIVRE ************
+************** DETAILS DU LIVRE ************
 ******************************************/
 
 .breadcrumb {
@@ -613,6 +613,87 @@ label {
     border-radius: 50%;
     margin-right: 10px; 
     object-fit: cover; 
+}
+
+/******************************************
+*************** MON COMPTE ************
+******************************************/
+
+.account_container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px; /* Espace entre les deux colonnes */
+}
+
+.account_information {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 35%;
+    height: 35em;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.account_title {
+    display: flex;
+    padding: 75px 15px 60px;
+}
+
+.profil_info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.detail_profile_picture {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+}
+
+.profile_edit {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #007BFF;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.user_info {
+    text-align: center;
+}
+
+.pseudo {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.member_since,
+.subtitle {
+    margin: 5px 0;
+}
+
+.books_logo {
+    width: 22px;
+}
+
+.perso_info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.perso_info h3 {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 /******************************************

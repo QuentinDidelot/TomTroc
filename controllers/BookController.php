@@ -61,4 +61,19 @@ class BookController
         $view = new View("Livres filtrés par titre");
         $view->render("allBook", ['books' => $books]);
     }
+
+    /**
+     * Affiche la page "Mon compte" si l'utilisateur est connecté
+     * @return void
+     */
+    public function showMyAccount() : void 
+    {
+       // Récupération de l'id du livre demandé.
+
+        $bookManager = new BookManager();
+
+
+        $view = new View("Mon Compte");
+        $view->render("myAccount");
+    }
 }

@@ -12,7 +12,7 @@ class BookManager extends AbstractEntityManager{
     public function getAllBookWithOwner() : array
     {
         $sql = "SELECT 
-                    book.*, user.pseudo 
+                    book.*, user.pseudo
                 FROM book
 
                 LEFT JOIN 
@@ -43,7 +43,7 @@ class BookManager extends AbstractEntityManager{
         $result->bindValue(':id', $id, PDO::PARAM_INT);
         $result->execute();
         $book = $result->fetch(PDO::FETCH_ASSOC);
-        
+
         if ($book) {
             return $book;
         }
@@ -96,5 +96,8 @@ class BookManager extends AbstractEntityManager{
         return $result->fetchAll();
     }
 
-
+    /**
+     * Récupère les informations de l'utilisateur et les livres qui lui appartiennent 
+     */
+    
 }
