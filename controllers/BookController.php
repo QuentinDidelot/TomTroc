@@ -33,11 +33,19 @@ class BookController
      * Affiche la page avec les détails du livre choisi
      * @return void
      */
-     public function showBookDetail() : void
+    public function showBookDetail() : void
     {
+        // Récupération de l'id du livre demandé.
+        $id = Utils::request("id", -1);
+        $bookManager = new BookManager();
+        $book = $bookManager->getBookById($id);
+        if (!$book) {
+            throw new Exception("Le livre demandé n'existe pas.");
+        }
         $view = new View("Détail du livres");
-        $view->render("bookDetail");
+        $view->render("bookDetail", ['book' => $book]);
     }
+    
     
     /**
      * Affiche la page avec les livres filtrés par titre.

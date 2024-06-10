@@ -493,7 +493,34 @@ label {
 ************** DETAIL DU LIVRE ************
 ******************************************/
 
+.breadcrumb {
+    display: flex;
+    flex-direction: row;
+    font-size: 14px;
+    background-color: var(--backgroundColorOne);
+    padding: 1em 0 1em 13em;
+    color: #6c757d;
+}
 
+.breadcrumb a {
+    color: var(--legendColor);
+    text-decoration: none;
+    display: flex;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb span {
+    display: flex;
+
+}
+
+.separator {
+    font-size: 14px;
+    padding: 0 5px 0 5px;
+}
 .bookDetail {
     display: flex;
     height: 100vh;

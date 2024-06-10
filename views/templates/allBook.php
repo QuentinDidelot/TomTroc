@@ -18,7 +18,7 @@
     <div class="all_books">
         <?php if (!empty($books)) { ?>
             <?php foreach ($books as $book) { ?>
-                <a href="" class="books_link">
+                <a href="index.php?action=bookDetail&id=<?= $book['id']?>" class="books_link">
                     <article class="books_card">
                         <div class="cart_background">
                             <img src="<?= $book['image'] ?>" alt="">
