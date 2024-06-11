@@ -615,9 +615,9 @@ label {
     object-fit: cover; 
 }
 
-/******************************************
-*************** MON COMPTE ************
-******************************************/
+/********************************************************
+*************** MON COMPTE --- Informations ************
+********************************************************/
 
 .account_title {
     display: flex;
@@ -718,7 +718,89 @@ label {
 }
 
 
+/********************************************************
+*************** MON COMPTE --- Tableaux ************
+********************************************************/
 
+.adminBook {
+    width: 90%;
+    margin: 20px auto;
+    background-color: var(--backgroundColorTwo);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.bookLine {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.bookLine.header {
+    background-color: #f9f9f9;
+    font-weight: bold;
+    text-align: center;
+}
+
+.bookLine:not(.header):nth-child(even) {
+    background-color: #f1f1f1;
+}
+
+.admin_title, .b_picture, .b_title, .b_author, .b_description, .b_availability, .b_action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    text-align: center;
+}
+
+.b_picture img {
+    max-width: 100%;
+    max-height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.b_description {
+    max-height: 104px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+}
+
+.available {
+    background-color: var(--mainGreenColor);
+    color: white;
+    padding: 6px 20px 6px 20px;
+    border-radius: 17px;
+    font-size: small;
+}
+
+.not-available{
+    background-color: indianred;
+    color: white;
+    padding: 6px 20px 6px 20px;
+    border-radius: 17px;
+    font-size: small;
+}
+
+.b_action a {
+    margin: 0 5px;
+    text-decoration: none;
+    color: black;
+}
+
+.b_action .edit {
+    color: #000;
+}
+
+.b_action .delete {
+    color: #f44336;
+}
 /******************************************
 *************** FOOTER ************
 ******************************************/
