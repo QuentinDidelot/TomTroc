@@ -71,7 +71,10 @@ class BookController
        // Récupération de l'id du livre demandé.
 
         $bookManager = new BookManager();
+        $userManager = new UserManager();
 
+        // $user =;
+        // $books =;
 
         $view = new View("Mon Compte");
         $view->render("myAccount");

@@ -97,7 +97,18 @@ class BookManager extends AbstractEntityManager{
     }
 
     /**
-     * Récupère les informations de l'utilisateur et les livres qui lui appartiennent 
+     * 
      */
-    
+    public function getAllBooksByUser($userId) : array 
+    {
+        $sql = "SELECT * 
+                FROM book
+                WHERE user_id = userID
+                ";
+                
+        $result = $this->db->getPDO()->prepare($userId);
+
+        $result->execute();
+        return $result->fetchAll();    
+    }
 }

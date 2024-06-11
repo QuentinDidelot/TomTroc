@@ -61,7 +61,7 @@
                     // $availability = $book['availability'];
 
                     $availability = "Disponible";
-                    // $availability = "Non disponible";
+                    
                     if ($availability == "Disponible") {
                         $availability_text = "Disponible";
                         $availability_class = "available"; 

@@ -54,4 +54,16 @@ class UserManager extends AbstractEntityManager {
         return null;
     }
 
+    /**
+     * Récupère les informations de l'utilisateur et les livres qui lui appartiennent 
+     */
+    public function getUserById() : array
+    {
+        $sql = "SELECT * 
+                FROM user
+                WHERE id = :id";
+        $result = $this->db->getPDO()->prepare($sql, ['id' => $id]);
+        $result->execute();
+        return $result->fetchAll();
+    }
 }
