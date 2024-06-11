@@ -17,8 +17,8 @@
             <header>
             <nav>
                 <div class="nav_left">
-                    <img class="logo" src="./img/icones/header.png" alt="Logo TomTroc (TT)">
-                    <span class="logo_title"> Tom Troc </span> 
+                    <a href="index.php?action=home"><img class="logo" src="./img/icones/header.png" alt="Logo TomTroc (TT)"></a>
+                    <span class="logo_title"> Tom Troc </span>
                     <a href="index.php?action=home">Accueil</a>
                     <a href="index.php?action=allBook" >Nos livres à l'échange</a>
                 </div>

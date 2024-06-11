@@ -1,28 +1,27 @@
-
 <h1 class="account_title">Mon compte</h1>
+
     <section class="account_container">
 
         <div class="account_information">
-            <div class="profil_info">
-                <img src="img/HK.jpg" class="detail_profile_picture" alt="image de profil">
-                <a href="#" class="profile_edit">Modifier</a>
+            <div class="profile_info">
+                <img src="img/HK.jpg" class="profile_picture" alt="image de profil">
+                <a href="#" class="profile_edit">Modifier</a><br><br>
+                <span>________________________</span><br><br>
             </div>
 
             <div class="user_info">
-                <div>     
                     <p class="pseudo">Quentin</p>
                     <p class="member_since">Membre depuis 1 an</p>
                     <p class="subtitle">Bibliothèque</p><br>
-                    <img src="img/icones/books.png" class="books_logo" alt="Icone livre">
-                    <span>4 livres</span>
-                </div>
+                    <p class="num_books"> <img src="img/icones/books.png" class="books_logo" alt="Icone livre">4 livres</p>
             </div>
         </div>
 
         <div class="account_information">
             <div class="perso_info">
-                <h3>Vos informations personnelles</h3>
-                <form action="" method="post">
+                <form action="" method="post" class="profile_form">
+                    <h3>Vos informations personnelles</h3>
+
                     <label for="email">Adresse email :</label>
                     <input class="form_input" type="email" id="email" name="email" value="" required>
                     
@@ -35,6 +34,7 @@
                     <div class="button_container">
                         <input class="button_type_2" type="submit" value="Enregistrer">
                     </div>
+
                 </form>
             </div>
         </div>

@@ -619,6 +619,11 @@ label {
 *************** MON COMPTE ************
 ******************************************/
 
+.account_title {
+    display: flex;
+    padding: 2em 6.6em 2em;
+}
+
 .account_container {
     display: flex;
     justify-content: center;
@@ -638,36 +643,34 @@ label {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.account_title {
-    display: flex;
-    padding: 75px 15px 60px;
-}
-
-.profil_info {
+.profile_info {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
 }
 
-.detail_profile_picture {
+.profile_picture {
     border-radius: 50%;
-    width: 120px;
-    height: 120px;
+    width: 130px;
+    height: 130px;
     object-fit: cover;
+    margin-top: 30px;
 }
 
 .profile_edit {
     margin-top: 10px;
     font-size: 14px;
-    color: #007BFF;
+    color: var(--legendColor);
     cursor: pointer;
     text-decoration: underline;
 }
 
+
 .user_info {
     text-align: center;
 }
+
 
 .pseudo {
     font-size: 1.2em;
@@ -675,9 +678,21 @@ label {
     margin: 10px 0;
 }
 
-.member_since,
-.subtitle {
+.member_since {
     margin: 5px 0;
+    color: var(--legendColor);
+}
+
+.user_info>.subtitle{
+    padding: 15px 0 0 0;
+    margin: 0;
+}
+
+.num_books {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    justify-content: center;
 }
 
 .books_logo {
@@ -691,10 +706,18 @@ label {
     align-items: center;
 }
 
+.profile_form {
+    align-items: flex-start;
+}
+
 .perso_info h3 {
     text-align: center;
     margin-bottom: 20px;
+    font-size: large;
+    font-weight: 400;
 }
+
+
 
 /******************************************
 *************** FOOTER ************
