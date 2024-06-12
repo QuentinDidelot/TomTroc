@@ -39,6 +39,21 @@ class UserManager extends AbstractEntityManager {
     }
 
     /**
+     * Vérifie si un e-mail est déjà utilisé par un utilisateur enregistré.
+     * @param string $email L'adresse e-mail à vérifier.
+     * @return bool True si l'e-mail existe déjà, false sinon.
+     */
+    public function emailExists(string $email): bool
+    {
+        $sql = "SELECT COUNT(*) FROM user WHERE email = :email";
+        $result = $this->db->getPDO()->prepare($sql);
+        $result->bindValue(':email', $email, PDO::PARAM_STR);
+        $result->execute();
+        $count = $result->fetchColumn();
+        return $count > 0;
+    }
+
+    /**
      * Récupère un utilisateur par son adresse mail.
      * @param string $email
      * @return ?User

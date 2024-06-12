@@ -31,16 +31,23 @@ class AdminController {
      */
     public function inscriptionUser() : void
     {
-
         // Récupérer les données du formulaire
         $pseudo = Utils::request('pseudo');
         $email = Utils::request('email');
         $password = Utils::request('password');
-
-        // Appeler le manager pour inscrire l'utilisateur
+    
+        // Vérifier si l'email est déjà utilisé
         $userManager = new UserManager();
+        if ($userManager->emailExists($email)) {
+            $errorMessage = "Cet email est déjà utilisé. Veuillez en choisir un autre.";
+            $view = new View("Inscription");
+            $view->render("inscriptionForm", ['errorMessage' => $errorMessage]);
+            exit;
+        }
+    
+        // Appeler le manager pour inscrire l'utilisateur
         $result = $userManager->inscriptionUser($pseudo, $email, $password);
-
+    
         if ($result['status'] === 'success') {
             // Redirection vers la page de connexion ou un autre succès
             $view = new View("Accueil");
@@ -52,6 +59,8 @@ class AdminController {
             $view->render("inscriptionForm", ['errorMessage' => $result['message']]);
         }
     }
+    
+    
 
     /**
      * Connexion de l'utilisateur.
@@ -92,11 +101,10 @@ class AdminController {
 
             // On redirige vers la page d'accueil.
             Utils::redirect("home");
-        } catch (Exception $e) {
-            // Gérer les erreurs de connexion
-            // Vous pouvez rediriger l'utilisateur vers le formulaire de connexion avec un message d'erreur
-            Utils::redirect("connectionForm", ['error' => $e->getMessage()]);
-        }
+            } catch (Exception $e) {
+                $_SESSION['error'] = $e->getMessage();
+                Utils::redirect("connectionForm");
+            }
     }
 
     /**
