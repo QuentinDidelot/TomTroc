@@ -68,15 +68,22 @@ class BookController
      */
     public function showMyAccount() : void 
     {
-       // Récupération de l'id du livre demandé.
+        // Si l'utilisateur est connecté alors on récupère son ID.
+        if (!isset($_SESSION['user_id'])) {
+            // Rediriger vers la page de connexion ou afficher une erreur
+            Utils::redirect("connectionForm");
+            exit;
+        }
+
+        $userId = $_SESSION['user_id'];
 
         $bookManager = new BookManager();
         $userManager = new UserManager();
 
-        // $user =;
-        // $books =;
+        $books = $bookManager->getAllBooksByUser($userId);
+        $user = $userManager->getUserById($userId);
 
         $view = new View("Mon Compte");
-        $view->render("myAccount");
+        $view->render("myAccount", ['books' => $books, 'user' => $user]);
     }
 }

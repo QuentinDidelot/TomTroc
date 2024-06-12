@@ -28,7 +28,7 @@
                     <a href="index.php?action=myAccount"><i class="fa-regular fa-user"></i> Mon compte</a>
                     <?php 
                     // Si on est connecté, on affiche le bouton de déconnexion, sinon, on affiche le bouton de connexion : 
-                    if (isset($_SESSION['user'])) {
+                    if (isset($_SESSION['user_id'])) {
                         echo '<a href="index.php?action=disconnectUser">Déconnexion</a>';
                     } else {
                         echo '<a href="index.php?action=connectionForm">Connexion</a>';

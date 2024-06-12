@@ -57,13 +57,36 @@ class UserManager extends AbstractEntityManager {
     /**
      * Récupère les informations de l'utilisateur et les livres qui lui appartiennent 
      */
-    public function getUserById() : array
+    public function getUserById(int $id) : ?User
     {
-        $sql = "SELECT * 
-                FROM user
-                WHERE id = :id";
-        $result = $this->db->getPDO()->prepare($sql, ['id' => $id]);
+        $sql = "SELECT * FROM user WHERE id = :id";
+        
+        $result = $this->db->getPDO()->prepare($sql);
+        $result->bindValue(':id', $id, PDO::PARAM_INT);
         $result->execute();
-        return $result->fetchAll();
+        
+        $userData = $result->fetch(PDO::FETCH_ASSOC);
+        
+        if ($userData) {
+            // Pour s'assurer que la méthode de mappage de données est correcte
+            return $this->mapDataToUser($userData);
+        }
+        return null;
+    }
+
+    /**
+     * Mappe les données de la base de données à un objet User
+     * @param array $data : les données de l'utilisateur
+     * @return User : un objet User
+     */
+    private function mapDataToUser(array $data) : User
+    {
+        // Pour s'assurer que l'objet User et ses méthodes existent et fonctionnent correctement
+        $user = new User();
+        $user->setId($data['id']);
+        $user->setEmail($data['email']);
+        $user->setPassword($data['password']);
+
+        return $user;
     }
 }

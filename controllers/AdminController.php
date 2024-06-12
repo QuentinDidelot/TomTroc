@@ -59,34 +59,44 @@ class AdminController {
      */
     public function connectUser() : void 
     {
-        // On récupère les données du formulaire.
-        $email = Utils::request("email");
-        $password = Utils::request("password");
+        try {
+            // On récupère les données du formulaire.
+            $email = Utils::request("email");
+            $password = Utils::request("password");
 
-        // On vérifie que les données sont valides.
-        if (empty($email) || empty($password)) {
-            throw new Exception("Tous les champs sont obligatoires. 1");
+            // On vérifie que les données sont valides.
+            if (empty($email) || empty($password)) {
+                throw new Exception("Tous les champs sont obligatoires.");
+            }
+
+            // On vérifie que l'utilisateur existe.
+            $userManager = new UserManager();
+            $user = $userManager->getUserByEmail($email);
+            if (!$user) {
+                throw new Exception("L'utilisateur demandé n'existe pas.");
+            }
+
+            // On vérifie que le mot de passe est correct.
+            if (!password_verify($password, $user->getPassword())) {
+                throw new Exception("Le mot de passe est incorrect.");
+            }
+
+            // On démarre la session si ce n'est pas déjà fait.
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+
+            // On connecte l'utilisateur.
+            $_SESSION['user'] = $user;
+            $_SESSION['user_id'] = $user->getId();  // Assurez-vous que cette méthode existe et retourne l'ID utilisateur
+
+            // On redirige vers la page d'accueil.
+            Utils::redirect("home");
+        } catch (Exception $e) {
+            // Gérer les erreurs de connexion
+            // Vous pouvez rediriger l'utilisateur vers le formulaire de connexion avec un message d'erreur
+            Utils::redirect("connectionForm", ['error' => $e->getMessage()]);
         }
-
-        // On vérifie que l'utilisateur existe.
-        $userManager = new UserManager();
-        $user = $userManager->getUserByEmail($email);
-        if (!$user) {
-            throw new Exception("L'utilisateur demandé n'existe pas.");
-        }
-
-        // On vérifie que le mot de passe est correct.
-        if (!password_verify($password, $user->getPassword())) {
-            $hash = password_hash($password, PASSWORD_DEFAULT);
-            throw new Exception("Le mot de passe est incorrect : $hash");
-        }
-
-        // On connecte l'utilisateur.
-        $_SESSION['user'] = $user;
-        $_SESSION['idUser'] = $user->getId();
-
-        // On redirige vers la page d'accueil'
-        Utils::redirect("home");
     }
 
     /**
@@ -96,7 +106,7 @@ class AdminController {
     public function disconnectUser() : void 
     {
         // On déconnecte l'utilisateur.
-        unset($_SESSION['user']);
+        unset($_SESSION['user_id']);
 
         // On redirige vers la page d'accueil.
         Utils::redirect("home");
