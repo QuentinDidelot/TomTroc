@@ -29,7 +29,8 @@
                     <h3 class="subtitle">Propriétaire</h3>
 
                     <a href="" class="book_owner">
-                        <img src="<?= $book["profile_image"] ?>" class="detail_profile_picture" alt="image de profil">
+                        <img src="<?= !empty($book['profile_image']) ? htmlspecialchars($book['profile_image']) : 'img/icones/default_profile_image.png' ?>" class="detail_profile_picture" alt="image de profil">
+
                         <span><?= $book['pseudo'] ?></span>
                     </a>
                 </div>

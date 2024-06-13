@@ -42,6 +42,8 @@ class BookController
         if (!$book) {
             throw new Exception("Le livre demandé n'existe pas.");
         }
+
+        
         $view = new View("Détail du livres");
         $view->render("bookDetail", ['book' => $book]);
     }

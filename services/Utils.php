@@ -21,6 +21,8 @@ class Utils {
         return $dateFormatter->format($date);
     }
 
+
+
     /**
      * Redirige vers une URL.
      * @param string $action : l'action que l'on veut faire (correspond aux actions dans le routeur).

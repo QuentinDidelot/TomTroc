@@ -2,7 +2,7 @@
 
 class UserManager extends AbstractEntityManager {
 
-    public function inscriptionUser(string $pseudo, string $email, string $password): array {
+    public function inscriptionUser(string $pseudo, string $email, string $password, ?string $profileImage = null): array {
         // Validation des données
         if (empty($pseudo) || empty($email) || empty($password)) {
             return ['status' => 'error', 'message' => 'Tous les champs sont requis.'];
@@ -24,11 +24,12 @@ class UserManager extends AbstractEntityManager {
 
 
         // Insertion dans la base de données
-        $stmt = $this->db->getPDO()->prepare("INSERT INTO user (pseudo, email, password) VALUES (:pseudo, :email, :password)");
+        $stmt = $this->db->getPDO()->prepare("INSERT INTO user (pseudo, email, password, profile_image) VALUES (:pseudo, :email, :password, :profile_image)");
         $result = $stmt->execute([
             'pseudo' => $pseudo,
             'email' => $email,
             'password' => $hashedPassword,
+            'profile_image' => $profileImage,
         ]);
 
         if ($result) {
@@ -62,31 +63,46 @@ class UserManager extends AbstractEntityManager {
     {
         $sql = "SELECT * FROM user WHERE email = :email";
         $result = $this->db->query($sql, ['email' => $email]);
-        $user = $result->fetch();
-        if ($user) {
-            return new User($user);
+        $userData = $result->fetch(PDO::FETCH_ASSOC);
+    
+        if (!$userData) {
+            return null;
         }
-        return null;
+    
+        // Création d'un objet User avec les données récupérées
+        $user = new User();
+        $user->setId($userData['id']);
+        $user->setPseudo($userData['pseudo']);
+        $user->setEmail($userData['email']);
+        $user->setPassword($userData['password']);
+        $user->setProfileImage($userData['profile_image']);
+        $user->setRegistrationDate($userData['registration_date']);
+    
+        return $user;
     }
 
-    /**
-     * Récupère les informations de l'utilisateur et les livres qui lui appartiennent 
-     */
-    public function getUserById(int $id) : ?User
+
+    public function getUserById(int $userId) : ?User
     {
-        $sql = "SELECT * FROM user WHERE id = :id";
-        
+        $sql = "SELECT id, pseudo, email, password, profile_image, registration_date FROM user WHERE id = :id";
         $result = $this->db->getPDO()->prepare($sql);
-        $result->bindValue(':id', $id, PDO::PARAM_INT);
+        $result->bindValue(':id', $userId, PDO::PARAM_INT);
         $result->execute();
-        
         $userData = $result->fetch(PDO::FETCH_ASSOC);
-        
-        if ($userData) {
-            // Pour s'assurer que la méthode de mappage de données est correcte
-            return $this->mapDataToUser($userData);
+
+        if (!$userData) {
+            return null;
         }
-        return null;
+
+        $user = new User();
+        $user->setId($userData['id']);
+        $user->setPseudo($userData['pseudo']);
+        $user->setEmail($userData['email']);
+        $user->setPassword($userData['password']);
+        $user->setProfileImage($userData['profile_image']);
+        $user->setRegistrationDate($userData['registration_date']);
+
+        return $user;
     }
 
     /**

@@ -35,7 +35,7 @@ class AdminController {
         $pseudo = Utils::request('pseudo');
         $email = Utils::request('email');
         $password = Utils::request('password');
-    
+
         // Vérifier si l'email est déjà utilisé
         $userManager = new UserManager();
         if ($userManager->emailExists($email)) {
@@ -72,39 +72,39 @@ class AdminController {
             // On récupère les données du formulaire.
             $email = Utils::request("email");
             $password = Utils::request("password");
-
+    
             // On vérifie que les données sont valides.
             if (empty($email) || empty($password)) {
                 throw new Exception("Tous les champs sont obligatoires.");
             }
-
+    
             // On vérifie que l'utilisateur existe.
             $userManager = new UserManager();
             $user = $userManager->getUserByEmail($email);
             if (!$user) {
                 throw new Exception("L'utilisateur demandé n'existe pas.");
             }
-
+    
             // On vérifie que le mot de passe est correct.
             if (!password_verify($password, $user->getPassword())) {
                 throw new Exception("Le mot de passe est incorrect.");
             }
-
+    
             // On démarre la session si ce n'est pas déjà fait.
             if (session_status() === PHP_SESSION_NONE) {
                 session_start();
             }
-
+    
             // On connecte l'utilisateur.
             $_SESSION['user'] = $user;
             $_SESSION['user_id'] = $user->getId();  // Assurez-vous que cette méthode existe et retourne l'ID utilisateur
-
+    
             // On redirige vers la page d'accueil.
             Utils::redirect("home");
-            } catch (Exception $e) {
-                $_SESSION['error'] = $e->getMessage();
-                Utils::redirect("connectionForm");
-            }
+        } catch (Exception $e) {
+            $_SESSION['error'] = $e->getMessage();
+            Utils::redirect("connectionForm");
+        }
     }
 
     /**

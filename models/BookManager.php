@@ -103,12 +103,13 @@ class BookManager extends AbstractEntityManager{
     {
         $sql = "SELECT * 
                 FROM book
+                LEFT JOIN user ON user.id = book.user_id
                 WHERE user_id = :userId";
                 
         $result = $this->db->getPDO()->prepare($sql);
         $result->bindParam(':userId', $userId, PDO::PARAM_INT);
     
         $result->execute();
-        return $result->fetchAll();    
+        return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 }

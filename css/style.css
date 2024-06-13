@@ -723,7 +723,7 @@ label {
 ********************************************************/
 
 .adminBook {
-    width: 90%;
+    width: 72%;
     margin: 20px auto;
     background-color: var(--backgroundColorTwo);
     border-radius: 8px;
@@ -790,8 +790,8 @@ label {
 
 .b_action a {
     margin: 0 5px;
-    text-decoration: none;
-    color: black;
+    text-decoration: underline;
+    padding: 10px;
 }
 
 .b_action .edit {
@@ -799,7 +799,7 @@ label {
 }
 
 .b_action .delete {
-    color: #f44336;
+    color: indianred;
 }
 /******************************************
 *************** FOOTER ************
