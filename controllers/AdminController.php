@@ -119,4 +119,65 @@ class AdminController {
         // On redirige vers la page d'accueil.
         Utils::redirect("home");
     }
+
+    /**
+     * Met à jour l'image de profil de l'utilisateur.
+     * @return void
+     */
+    public function updateProfileImage() 
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['new_profile_image'])) {
+            $userId = $_SESSION['user_id'];
+            $profileImage = $_FILES['new_profile_image'];
+    
+            if ($profileImage['error'] === UPLOAD_ERR_OK) {
+                $targetDir = "uploads/profile_pictures/";
+                $targetFile = $targetDir . basename($profileImage["name"]);
+                move_uploaded_file($profileImage["tmp_name"], $targetFile);
+    
+                $userManager = new UserManager();
+                $userManager->updateProfileImage($userId, $targetFile);
+    
+                // Redirection vers la page de profil après la mise à jour
+                Utils::redirect("myAccount");
+            } else {
+                throw new Exception("Erreur lors du téléchargement de l'image.");
+            }
+        }
+    }
+
+    private function handleProfilePictureUpload(): array {
+        $targetDir = "uploads/profile_pictures/"; // Dossier où sauvegarder les fichiers
+        $targetFile = $targetDir . basename($_FILES["new_profile_image"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+
+        // Vérifie si le fichier image est réel ou une fausse image
+        $check = getimagesize($_FILES["new_profile_image"]["tmp_name"]);
+        if ($check === false) {
+            return ['success' => false, 'message' => "Le fichier n'est pas une image."];
+        }
+
+        // Vérifie si le fichier existe déjà
+        if (file_exists($targetFile)) {
+            return ['success' => false, 'message' => "Désolé, ce fichier existe déjà."];
+        }
+
+        // Vérifie la taille du fichier
+        if ($_FILES["new_profile_image"]["size"] > 500000) {
+            return ['success' => false, 'message' => "Désolé, votre fichier est trop volumineux."];
+        }
+
+        // Autorise certains formats de fichiers
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+            return ['success' => false, 'message' => "Désolé, seuls les fichiers JPG, JPEG, PNG & GIF sont autorisés."];
+        }
+
+        // Essayez de télécharger le fichier
+        if (move_uploaded_file($_FILES["new_profile_image"]["tmp_name"], $targetFile)) {
+            return ['success' => true, 'filePath' => $targetFile];
+        } else {
+            return ['success' => false, 'message' => "Désolé, une erreur s'est produite lors du téléchargement de votre fichier."];
+        }
+    }
 }

@@ -105,6 +105,15 @@ class UserManager extends AbstractEntityManager {
         return $user;
     }
 
+
+
+    public function updateProfileImage(int $userId, string $profileImage): bool {
+        $sql = "UPDATE `user` SET `profile_image` = :profile_image WHERE `id` = :user_id";
+        $result = $this->db->getPDO()->prepare($sql);
+        return $result->execute(['profile_image' => $profileImage, 'user_id' => $userId]);
+    }
+
+
     /**
      * Mappe les données de la base de données à un objet User
      * @param array $data : les données de l'utilisateur
