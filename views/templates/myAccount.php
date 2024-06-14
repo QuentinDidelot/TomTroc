@@ -75,10 +75,9 @@
                         <span class = <?php echo $availability_class; ?>><?= $book['availability'] ?>
                 </div>
                 <div class="b_action">
-    <a href="index.php?action=updateBookForm&id=<?= htmlspecialchars($book['book_id'], ENT_QUOTES, 'UTF-8') ?>" class="edit">Éditer</a>
-    <a href="#" class="delete">Supprimer</a>
-</div>
+                    <a class="edit" href="index.php?action=updateBookForm&id=<?= htmlspecialchars($book['book_id']) ?>" >Éditer</a>
+                    <a class="delete" href="index.php?action=deleteBook&id=<?= htmlspecialchars($book['book_id']) ?>"  <?= Utils::askConfirmation("Êtes-vous sûr de vouloir supprimer ce livre ?")?> > Supprimer</a>
+                </div>
             </div>
         <?php } ?>
-
     </section>

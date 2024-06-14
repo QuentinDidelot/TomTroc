@@ -179,14 +179,14 @@ class AdminController {
     }
 
     /**
-     * Modification du livre
+     * Met à jour les informations d'un livre.
      * @return void
      */
     public function updateBook() : void
     {
         $this->checkIfUserIsConnected();
         
-        $id = Utils::request('id');
+        $id = Utils::request('bookId');
         $title = Utils::request('title');
         $author = Utils::request('author');
         $description = Utils::request('description');
@@ -195,8 +195,110 @@ class AdminController {
         $bookManager = new BookManager();
         $bookManager->updateBook($id, $title, $author, $description, $availability);
 
+        Utils::redirect('updateBookForm&id=' . $id);
+    }
+
+    /**
+     * Met à jour la photo d'un livre.
+     * @return void
+     */
+    public function updateBookPhoto() : void
+    {
+        $this->checkIfUserIsConnected();
+        
+        $bookId = Utils::request('bookId');
+        $bookManager = new BookManager();
+
+        // Gestion du téléchargement de la nouvelle image
+        if ($_FILES['new_book_image']['error'] === UPLOAD_ERR_OK) {
+            $uploadResult = $this->handleBookImageUpload();
+
+            if ($uploadResult['success']) {
+                $bookManager->updateBookPhoto($bookId, $uploadResult['filePath']);
+                Utils::redirect('updateBookForm&id=' . $bookId);
+            } else {
+                throw new Exception($uploadResult['message']);
+            }
+        } else {
+            throw new Exception("Erreur lors du téléchargement de l'image.");
+        }
+    }
+
+    public function deleteBook() : void
+    {
+        $this->checkIfUserIsConnected();
+        
+        $bookId = Utils::request('id'); 
+        $bookManager = new BookManager();
+        
+        
+        $bookManager->deleteBook($bookId);
+        
         Utils::redirect('myAccount');
     }
+
+
+    /**
+     * Gère le téléchargement de la nouvelle image de livre.
+     * @return array : Résultat du téléchargement (success, message, filePath).
+     */
+    private function handleBookImageUpload() : array
+    {
+        $targetDir = "uploads/book_covers/";
+        $targetFile = $targetDir . basename($_FILES["new_book_image"]["name"]);
+    
+        if ($_FILES["new_book_image"]["error"] !== UPLOAD_ERR_OK) {
+            return ['success' => false, 'message' => "Erreur lors du téléchargement: code " . $_FILES["new_book_image"]["error"]];
+        }
+    
+        // Check file size
+        if ($_FILES["new_book_image"]["size"] > 500000) {
+            return ['success' => false, 'message' => "Le fichier est trop volumineux. Assurez-vous qu'il ne dépasse pas 500 KB."];
+        }
+    
+        // Allow certain file formats
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        if (!in_array($_FILES["new_book_image"]["type"], $allowedTypes)) {
+            return ['success' => false, 'message' => "Type de fichier non autorisé. Seuls les fichiers JPG, PNG et GIF sont autorisés."];
+        }
+    
+        // Move uploaded file
+        if (move_uploaded_file($_FILES["new_book_image"]["tmp_name"], $targetFile)) {
+            return ['success' => true, 'message' => "L'image du livre a été mise à jour.", 'filePath' => $targetFile];
+        } else {
+            return ['success' => false, 'message' => "Erreur lors du déplacement du fichier téléchargé."];
+        }
+    }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     /**

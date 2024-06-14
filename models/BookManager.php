@@ -101,7 +101,8 @@ class BookManager extends AbstractEntityManager{
     }
 
     /**
-     * 
+     * Récupère tous les livres avec leurs utilisateurs
+     * @return array 
      */
     public function getAllBooksByUser($userId) : array 
     {
@@ -116,5 +117,63 @@ class BookManager extends AbstractEntityManager{
         $result->execute();
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    /**
+     * Met à jour les informations d'un livre.
+     * @param int $id : ID du livre à mettre à jour.
+     * @param string $title : Nouveau titre du livre.
+     * @param string $author : Nouvel auteur du livre.
+     * @param string $description : Nouveau commentaire du livre.
+     * @param string $availability : Nouvelle disponibilité du livre.
+     * @return void
+     */
+    public function updateBook(int $id, string $title, string $author, string $description, string $availability) : void
+    {
+        $sql = "UPDATE book 
+                SET title = :title, author = :author, description = :description, availability = :availability 
+                WHERE id = :id";
+        
+        $stmt = $this->db->getPDO()->prepare($sql);
+        $stmt->bindParam(':title', $title, PDO::PARAM_STR);
+        $stmt->bindParam(':author', $author, PDO::PARAM_STR);
+        $stmt->bindParam(':description', $description, PDO::PARAM_STR);
+        $stmt->bindParam(':availability', $availability, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        
+        $stmt->execute();
+    }
+
+    /**
+     * Met à jour la photo d'un livre.
+     * @param int $id : ID du livre à mettre à jour.
+     * @param string $filePath : Chemin de la nouvelle photo de couverture.
+     * @return void
+     */
+    public function updateBookPhoto(int $id, string $filePath) : void
+    {
+        $sql = "UPDATE book 
+                SET image = :image 
+                WHERE id = :id";
+        
+        $stmt = $this->db->getPDO()->prepare($sql);
+        $stmt->bindParam(':image', $filePath, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        
+        $stmt->execute();
+    }
+
+    /**
+     * Supprime un livre
+     * @return void
+     */
+    public function deleteBook(int $bookId): void
+    {
+        // Préparez votre requête de suppression
+        $sql = "DELETE FROM book WHERE id = :id";
+        $stmt = $this->db->getPDO()->prepare($sql);
+        $stmt->bindValue(':id', $bookId, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
     
 }

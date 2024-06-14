@@ -8,7 +8,13 @@
         <div class="caption caption_left">Photo</div>
         <div>
             <img class="bookCover" src="<?= $book['image'] ?>" alt="couverture du livre choisi"><br>
-            <a href="" class="updatePicture">Modifier la photo</a>
+            <form action="index.php?action=updateBookPhoto" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="bookId" value="<?= $book['id'] ?>">
+                <input type="file" name="new_book_image">
+                <input type="submit" value="Modifier la photo">
+            </form>
+
+
         </div>
     </div>
     <div class="bookInfo">
