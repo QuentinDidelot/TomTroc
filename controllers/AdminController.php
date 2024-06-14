@@ -147,6 +147,8 @@ class AdminController {
         $bookManager = new BookManager();
         $userManager = new UserManager();
 
+
+        
         $books = $bookManager->getAllBooksByUser($userId);
         $user = $userManager->getUserById($userId);
 
@@ -269,36 +271,6 @@ class AdminController {
             return ['success' => false, 'message' => "Erreur lors du déplacement du fichier téléchargé."];
         }
     }
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     /**

@@ -39,6 +39,10 @@ try {
             $bookController->showBooksByTitle();
             break;
 
+        case 'publicAccount':
+            $bookController = new UserController();
+            $bookController->showPublicAccount();
+            break;
 
             
         // Section admin & connexion.    
