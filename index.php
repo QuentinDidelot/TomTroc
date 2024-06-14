@@ -82,7 +82,12 @@ try {
             $adminController = new AdminController();
             $adminController->showUpdateBookForm();
             break;
-            
+
+        case 'updateBook':
+            $bookController = new AdminController();
+            $bookController->updateBook();
+            break;    
+
         default:
         throw new Exception("La page demandée n'existe pas.");
     }

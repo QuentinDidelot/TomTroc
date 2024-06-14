@@ -3,38 +3,31 @@
     <h1 class="updateInfoTitle">Modifier les informations</h1>
 </nav>
 
-
-
-
 <section class="bookInfoContainer">
     <div class="bookInfoPicture">
         <div class="caption caption_left">Photo</div>
-        <img class="" src="img/books/le_silmarillion.jpg" alt="couverture du livre choisi">
+        <div>
+            <img class="bookCover" src="<?= $book['image'] ?>" alt="couverture du livre choisi"><br>
+            <a href="" class="updatePicture">Modifier la photo</a>
+        </div>
     </div>
-
     <div class="bookInfo">
-        <form action="" method="post" class="bookInfoForm profile_form">
-        
+        <form action="index.php?action=updateBook" method="post" class="bookInfoForm profile_form">
+            <input type="hidden" name="bookId" value="<?= $book['id'] ?>">
             <label for="title">Titre</label>
-            <input class="form_input" type="title" id="title" name="title" value="" required>
-            
+            <input class="form_input" type="text" id="title" name="title" value="<?= $book['title'] ?>" required>
             <label for="author">Auteur</label>
-            <input class="form_input" type="text" id="author" name="author" value="" required>
-            
-            <label for="comment">Commentaire</label>
-            <textarea id="description" name="description" value="" required></textarea>
-            
+            <input class="form_input" type="text" id="author" name="author" value="<?= $book['author'] ?>" required>
+            <label for="description">Commentaire</label>
+            <textarea id="description" name="description" required><?= $book['description'] ?></textarea>
             <label for="availability">Disponibilité</label>
-            <select name="" id="availability">
-                <option value="Disponible">Disponible</option>
-                <option value="Non dispo.">Non dispo.</option>
+            <select name="availability" id="availability">
+                <option value="Disponible" <?= $book['availability'] == 'Disponible' ? 'selected' : '' ?>>Disponible</option>
+                <option value="Non dispo." <?= $book['availability'] == 'Non dispo.' ? 'selected' : '' ?>>Non dispo.</option>
             </select>
-
             <div class="button_container">
                 <input class="button_type_1" type="submit" value="Valider">
             </div>
-
         </form>
     </div>
-
 </section>

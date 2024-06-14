@@ -75,9 +75,9 @@
                         <span class = <?php echo $availability_class; ?>><?= $book['availability'] ?>
                 </div>
                 <div class="b_action">
-                    <a href="index.php?action=updateBookForm" class="edit">Éditer</a>
-                    <a href="#" class="delete">Supprimer</a>
-                </div>
+    <a href="index.php?action=updateBookForm&id=<?= htmlspecialchars($book['book_id'], ENT_QUOTES, 'UTF-8') ?>" class="edit">Éditer</a>
+    <a href="#" class="delete">Supprimer</a>
+</div>
             </div>
         <?php } ?>
 

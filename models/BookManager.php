@@ -34,16 +34,20 @@ class BookManager extends AbstractEntityManager{
      */
     public function getBookById(int $id) : ?array
     {
-        $sql = "SELECT book.*, user.pseudo, user.profile_image 
+        if ($id <= 0) {
+            throw new InvalidArgumentException("ID de livre invalide.");
+        }
+    
+        $sql = "SELECT book.id as book_id, book.*, user.pseudo, user.profile_image 
                 FROM book 
                 LEFT JOIN user ON user.id = book.user_id 
                 WHERE book.id = :id";
-
+    
         $result = $this->db->getPDO()->prepare($sql);
         $result->bindValue(':id', $id, PDO::PARAM_INT);
         $result->execute();
         $book = $result->fetch(PDO::FETCH_ASSOC);
-
+    
         if ($book) {
             return $book;
         }
@@ -101,7 +105,7 @@ class BookManager extends AbstractEntityManager{
      */
     public function getAllBooksByUser($userId) : array 
     {
-        $sql = "SELECT * 
+        $sql = "SELECT book.id as book_id, book.*, user.pseudo
                 FROM book
                 LEFT JOIN user ON user.id = book.user_id
                 WHERE user_id = :userId";
@@ -112,4 +116,5 @@ class BookManager extends AbstractEntityManager{
         $result->execute();
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
+    
 }

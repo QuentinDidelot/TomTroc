@@ -161,14 +161,42 @@ class AdminController {
     public function showUpdateBookForm() : void 
     {
         $this->checkIfUserIsConnected();
-
-        // On affiche la page de modification du livre.
+        
+        $id = Utils::request('id');
+        if (!$id) {
+            throw new Exception("ID du livre non spécifié.");
+        }
+    
+        $bookManager = new BookManager();
+        $book = $bookManager->getBookById($id);
+    
+        if (!$book) {
+            throw new Exception("Le livre demandé n'existe pas.");
+        }
+        
         $view = new View("Edition d'un livre");
-        $view->render("updateBookForm");
+        $view->render("updateBookForm", ['book' => $book]);
     }
 
+    /**
+     * Modification du livre
+     * @return void
+     */
+    public function updateBook() : void
+    {
+        $this->checkIfUserIsConnected();
+        
+        $id = Utils::request('id');
+        $title = Utils::request('title');
+        $author = Utils::request('author');
+        $description = Utils::request('description');
+        $availability = Utils::request('availability');
 
+        $bookManager = new BookManager();
+        $bookManager->updateBook($id, $title, $author, $description, $availability);
 
+        Utils::redirect('myAccount');
+    }
 
 
     /**
