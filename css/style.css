@@ -38,6 +38,7 @@ main {
     background-color: var(--backgroundColorTwo);
 }
 
+
 h1 {
     font-family: "Lora", serif;
     font-style: normal;
@@ -212,11 +213,20 @@ header > nav {
 
 .caption{
     display: flex;
-    justify-content: end;
     font-size: 13px;
     color: var(--legendColor);
 }
 
+.caption_left{
+    display: flex;
+    justify-content: start;
+    padding-bottom: 15px;
+}
+
+.caption_right{
+    display: flex;
+    justify-content: end;
+}
 
 /*
 * Second bloc : Les derniers livres ajoutés
@@ -406,7 +416,7 @@ label {
 }
 
 
-.form_input {
+.form_input, select, textarea {
     width: 330px;
     height: 58px;
     margin: 5px 0 30px 0;
@@ -414,6 +424,7 @@ label {
     font-size: 16px;
     border: solid 1px rgb(221, 220, 220);
     border-radius: 10px;
+    background: aliceblue;
 }
 
 .form_link{
@@ -497,8 +508,7 @@ label {
     display: flex;
     flex-direction: row;
     font-size: 14px;
-    background-color: var(--backgroundColorOne);
-    padding: 1em 0 1em 13em;
+    padding: 1em 0 1em 21em;
     color: #6c757d;
 }
 
@@ -507,6 +517,7 @@ label {
     text-decoration: none;
     display: flex;
 }
+
 
 .breadcrumb a:hover {
     text-decoration: underline;
@@ -801,6 +812,42 @@ label {
 .b_action .delete {
     color: indianred;
 }
+
+
+/********************************************************
+*************** MODIFICATION LIVRES ************
+********************************************************/
+
+.updateInfoTitle{
+    font-size: xx-large;
+    padding-left: 9em;
+}
+
+.bookInfoContainer {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+    width: 70%;
+    margin: auto;
+    padding: 25px 0 25px 0;
+    margin-top: 25px;
+}
+
+.bookInfoPicture>img{
+    width: 50%;
+}
+
+.bookInfoForm>input, .bookInfoForm>textarea, select{
+    width: 425px;
+    max-width: 425px;
+}
+
+.bookInfoForm>textarea{
+    min-height: 150px;
+}
+
 /******************************************
 *************** FOOTER ************
 ******************************************/

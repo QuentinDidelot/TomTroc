@@ -60,7 +60,6 @@ class AdminController {
         }
     }
     
-    
 
     /**
      * Connexion de l'utilisateur.
@@ -119,6 +118,58 @@ class AdminController {
         // On redirige vers la page d'accueil.
         Utils::redirect("home");
     }
+
+
+    /**
+     * Vérifie que l'utilisateur est connecté.
+     * @return void
+     */
+    private function checkIfUserIsConnected() : void
+    {
+        // Si l'utilisateur est connecté alors on récupère son ID.
+        if (!isset($_SESSION['user_id'])) {
+            // Rediriger vers la page de connexion ou afficher une erreur
+            Utils::redirect("connectionForm");
+            exit;
+        }
+    }
+
+    /**
+     * Affiche la page "Mon compte" si l'utilisateur est connecté
+     * @return void
+     */
+    public function showMyAccount() : void 
+    {
+        $this->checkIfUserIsConnected();
+
+        $userId = $_SESSION['user_id'];
+
+        $bookManager = new BookManager();
+        $userManager = new UserManager();
+
+        $books = $bookManager->getAllBooksByUser($userId);
+        $user = $userManager->getUserById($userId);
+
+        $view = new View("Mon Compte");
+        $view->render("myAccount", ['books' => $books, 'user' => $user]);
+    }
+
+    /**
+     * Affichage du formulaire d'édition de livre.
+     * @return void
+     */
+    public function showUpdateBookForm() : void 
+    {
+        $this->checkIfUserIsConnected();
+
+        // On affiche la page de modification du livre.
+        $view = new View("Edition d'un livre");
+        $view->render("updateBookForm");
+    }
+
+
+
+
 
     /**
      * Met à jour l'image de profil de l'utilisateur.

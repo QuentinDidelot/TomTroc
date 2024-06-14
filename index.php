@@ -39,10 +39,7 @@ try {
             $bookController->showBooksByTitle();
             break;
 
-        case 'myAccount' :
-            $bookController = new BookController();
-            $bookController->showMyAccount();
-            break;
+
             
         // Section admin & connexion.    
         
@@ -70,12 +67,22 @@ try {
             $adminController = new AdminController();
             $adminController->disconnectUser();
             break;
-            
+
+        case 'myAccount' :
+            $bookController = new AdminController();
+            $bookController->showMyAccount();
+            break;
+
         case 'updateProfileImage':
             $adminController = new AdminController();
             $adminController->updateProfileImage();
             break;
 
+        case 'updateBookForm':
+            $adminController = new AdminController();
+            $adminController->showUpdateBookForm();
+            break;
+            
         default:
         throw new Exception("La page demandée n'existe pas.");
     }

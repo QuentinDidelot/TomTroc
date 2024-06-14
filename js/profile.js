@@ -7,11 +7,10 @@ document.addEventListener('DOMContentLoaded', function() {
     fileInput.addEventListener('change', () => {
         if (!formSubmitted) {
             formSubmitted = true;
-            document.getElementById('profileImageForm').submit(); // Soumet le formulaire lorsque le fichier est sélectionné
+            document.getElementById('profileImageForm').submit(); 
         }
     });
 
-    // Réinitialise formSubmitted lors du rechargement de la page
     window.onload = function() {
         formSubmitted = false;
     };

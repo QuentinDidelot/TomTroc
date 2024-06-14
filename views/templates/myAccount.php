@@ -2,25 +2,25 @@
 
     <section class="account_container">
 
-    <div class="account_information">
-        <div class="profile_info">
-            <img src="<?= $user->getProfileImage() ? htmlspecialchars($user->getProfileImage()) : 'img/icones/default_profile_image.png' ?>" class="profile_picture" alt="image de profil">
-            <form action="index.php?action=updateProfileImage" method="post" enctype="multipart/form-data" id="profileImageForm">
-                <label for="new_profile_image" class="profile_edit" style="cursor: pointer;">Modifier</label>
-                <input type="file" name="new_profile_image" id="new_profile_image" style="display: none;" onchange="submitFormOnce()">
-                <button type="submit" style="display: none;">Enregistrer</button>
-            </form>
-            <span>________________________</span><br><br>
-        </div>
+        <div class="account_information">
+            <div class="profile_info">
+                <img src="<?= $user->getProfileImage() ? htmlspecialchars($user->getProfileImage()) : 'img/icones/default_profile_image.png' ?>" class="profile_picture" alt="image de profil">
+                <form action="index.php?action=updateProfileImage" method="post" enctype="multipart/form-data" id="profileImageForm">
+                    <label for="new_profile_image" class="profile_edit" style="cursor: pointer;">Modifier</label>
+                    <input type="file" name="new_profile_image" id="new_profile_image" style="display: none;" onchange="submitFormOnce()">
+                    <button type="submit" style="display: none;">Enregistrer</button>
+                </form>
+                <span>________________________</span><br><br>
+            </div>
 
 
-        <div class="user_info">
-                <p class="pseudo"><?= htmlspecialchars($user->getPseudo())?></p>
-                <p class="member_since"><?= htmlspecialchars($user->getMembershipDurationString()) ?></p>
-                <p class="subtitle">Bibliothèque</p><br>
-                <p class="num_books"> <img src="img/icones/books.png" class="books_logo" alt="Icone livre"><?= count($books) ?> livre<?= count($books) !== 1 ? 's' : '' ?></p>
+            <div class="user_info">
+                    <p class="pseudo"><?= htmlspecialchars($user->getPseudo())?></p>
+                    <p class="member_since"><?= htmlspecialchars($user->getMembershipDurationString()) ?></p>
+                    <p class="subtitle">Bibliothèque</p><br>
+                    <p class="num_books"> <img src="img/icones/books.png" class="books_logo" alt="Icone livre"><?= count($books) ?> livre<?= count($books) !== 1 ? 's' : '' ?></p>
+            </div>
         </div>
-    </div>
 
         <div class="account_information">
             <div class="perso_info">
@@ -71,14 +71,14 @@
                         }
                         ?>
                     
-            <div class="b_availability">
-                    <span class = <?php echo $availability_class; ?>><?= $book['availability'] ?>
+                <div class="b_availability">
+                        <span class = <?php echo $availability_class; ?>><?= $book['availability'] ?>
+                </div>
+                <div class="b_action">
+                    <a href="index.php?action=updateBookForm" class="edit">Éditer</a>
+                    <a href="#" class="delete">Supprimer</a>
+                </div>
             </div>
-            <div class="b_action">
-                <a href="#" class="edit">Éditer</a>
-                <a href="#" class="delete">Supprimer</a>
-            </div>
-        </div>
         <?php } ?>
 
     </section>

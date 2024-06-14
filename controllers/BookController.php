@@ -64,28 +64,30 @@ class BookController
         $view->render("allBook", ['books' => $books]);
     }
 
+    
     /**
-     * Affiche la page "Mon compte" si l'utilisateur est connecté
+     * Met à jour l'image de profil de l'utilisateur.
      * @return void
      */
-    public function showMyAccount() : void 
+    public function updateProfileImage() 
     {
-        // Si l'utilisateur est connecté alors on récupère son ID.
-        if (!isset($_SESSION['user_id'])) {
-            // Rediriger vers la page de connexion ou afficher une erreur
-            Utils::redirect("connectionForm");
-            exit;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['new_profile_image'])) {
+            $userId = $_SESSION['user_id'];
+            $profileImage = $_FILES['new_profile_image'];
+    
+            if ($profileImage['error'] === UPLOAD_ERR_OK) {
+                $targetDir = "uploads/profile_pictures/";
+                $targetFile = $targetDir . basename($profileImage["name"]);
+                move_uploaded_file($profileImage["tmp_name"], $targetFile);
+    
+                $userManager = new UserManager();
+                $userManager->updateProfileImage($userId, $targetFile);
+    
+                // Redirection vers la page de profil après la mise à jour
+                Utils::redirect("myAccount");
+            } else {
+                throw new Exception("Erreur lors du téléchargement de l'image.");
+            }
         }
-
-        $userId = $_SESSION['user_id'];
-
-        $bookManager = new BookManager();
-        $userManager = new UserManager();
-
-        $books = $bookManager->getAllBooksByUser($userId);
-        $user = $userManager->getUserById($userId);
-
-        $view = new View("Mon Compte");
-        $view->render("myAccount", ['books' => $books, 'user' => $user]);
     }
 }
