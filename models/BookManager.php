@@ -118,6 +118,20 @@ class BookManager extends AbstractEntityManager{
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
+
+    /**
+     * Récupère les livres d'un seul utilisateur
+     * @return array 
+     */
+    public function getBooksByUserId(int $userId): array {
+        $sql = "SELECT * FROM book WHERE user_id = :user_id";
+        $result = $this->db->getPDO()->prepare($sql);
+        $result->bindValue(':user_id', $userId, PDO::PARAM_INT);
+        $result->execute();
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
     /**
      * Met à jour les informations d'un livre.
      * @param int $id : ID du livre à mettre à jour.
@@ -133,14 +147,14 @@ class BookManager extends AbstractEntityManager{
                 SET title = :title, author = :author, description = :description, availability = :availability 
                 WHERE id = :id";
         
-        $stmt = $this->db->getPDO()->prepare($sql);
-        $stmt->bindParam(':title', $title, PDO::PARAM_STR);
-        $stmt->bindParam(':author', $author, PDO::PARAM_STR);
-        $stmt->bindParam(':description', $description, PDO::PARAM_STR);
-        $stmt->bindParam(':availability', $availability, PDO::PARAM_STR);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $result = $this->db->getPDO()->prepare($sql);
+        $result->bindParam(':title', $title, PDO::PARAM_STR);
+        $result->bindParam(':author', $author, PDO::PARAM_STR);
+        $result->bindParam(':description', $description, PDO::PARAM_STR);
+        $result->bindParam(':availability', $availability, PDO::PARAM_STR);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
         
-        $stmt->execute();
+        $result->execute();
     }
 
     /**
@@ -155,11 +169,11 @@ class BookManager extends AbstractEntityManager{
                 SET image = :image 
                 WHERE id = :id";
         
-        $stmt = $this->db->getPDO()->prepare($sql);
-        $stmt->bindParam(':image', $filePath, PDO::PARAM_STR);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $result = $this->db->getPDO()->prepare($sql);
+        $result->bindParam(':image', $filePath, PDO::PARAM_STR);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
         
-        $stmt->execute();
+        $result->execute();
     }
 
     /**
@@ -169,11 +183,49 @@ class BookManager extends AbstractEntityManager{
     public function deleteBook(int $bookId): void
     {
         // Préparez votre requête de suppression
-        $sql = "DELETE FROM book WHERE id = :id";
-        $stmt = $this->db->getPDO()->prepare($sql);
-        $stmt->bindValue(':id', $bookId, PDO::PARAM_INT);
-        $stmt->execute();
+        $sql = "DELETE FROM book 
+                WHERE id = :id";
+        $result = $this->db->getPDO()->prepare($sql);
+        $result->bindValue(':id', $bookId, PDO::PARAM_INT);
+        $result->execute();
     }
 
     
+    /**
+     * Récupère les livres d'un utilisateur avec pagination.
+     * @param int $userId
+     * @param int $limit
+     * @param int $offset
+     * @return array
+     */
+    public function getBooksByUserIdPaginated(int $userId, int $limit, int $offset): array {
+        $sql = "SELECT * FROM book 
+                WHERE user_id = :user_id 
+                AND availability = 'Disponible'
+                LIMIT :limit OFFSET :offset";
+
+        $result = $this->db->getPDO()->prepare($sql);
+        $result->bindValue(':user_id', $userId, PDO::PARAM_INT);
+        $result->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $result->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $result->execute();
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Compte le nombre total de livres d'un utilisateur.
+     * @param int $userId
+     * @return int
+     */
+    public function countBooksByUserId(int $userId): int {
+        $sql = "SELECT COUNT(*) 
+                FROM book 
+                WHERE user_id = :user_id
+                AND availability = 'Disponible'";
+
+        $result = $this->db->getPDO()->prepare($sql);
+        $result->bindValue(':user_id', $userId, PDO::PARAM_INT);
+        $result->execute();
+        return (int)$result->fetchColumn();
+    }
 }

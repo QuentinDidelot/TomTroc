@@ -787,7 +787,7 @@ label {
 }
 
 .b_description {
-    max-height: 104px;
+    max-height: 98px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -920,7 +920,10 @@ footer{
 
 .publicAccountProfile {
     background-color: var(--backgroundColorThree);
-    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 40px;
     border-radius: 25px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
@@ -951,7 +954,22 @@ footer{
     background-color: #f1f1f1;
 }
 
+.tableFooter {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 0;
+}
 
+.pagination {
+    padding : 15px;
+}
+
+.pagination>.active{
+    color: var(--mainGreenColor);
+    text-decoration: underline;
+    text-decoration-color: var(--mainGreenColor);
+}
 /******************************************
 *************** RESPONSIVE ************
 ******************************************/

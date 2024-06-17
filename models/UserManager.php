@@ -2,6 +2,14 @@
 
 class UserManager extends AbstractEntityManager {
 
+    /**
+     * Inscription d'un utilisateur avec les informations fournies.
+     * @param string $pseudo Le pseudonyme de l'utilisateur.
+     * @param string $email L'adresse e-mail de l'utilisateur.
+     * @param string $password Le mot de passe de l'utilisateur.
+     * @param ?string $profileImage L'image de profil de l'utilisateur (optionnelle).
+     * @return array Un tableau contenant le statut et le message de l'inscription.
+     */
     public function inscriptionUser(string $pseudo, string $email, string $password, ?string $profileImage = null): array {
         // Validation des données
         if (empty($pseudo) || empty($email) || empty($password)) {
@@ -82,6 +90,11 @@ class UserManager extends AbstractEntityManager {
     }
 
 
+    /**
+     * Récupère un utilisateur par son ID.
+     * @param int $userId L'ID de l'utilisateur.
+     * @return ?User Un objet User ou null si l'utilisateur n'est pas trouvé.
+     */
     public function getUserById(int $userId) : ?User
     {
         $sql = "SELECT id, pseudo, email, password, profile_image, registration_date FROM user WHERE id = :id";
@@ -106,7 +119,12 @@ class UserManager extends AbstractEntityManager {
     }
 
 
-
+    /**
+     * Met à jour l'image de profil d'un utilisateur.
+     * @param int $userId L'ID de l'utilisateur.
+     * @param string $profileImage Le chemin de l'image de profil.
+     * @return bool True si la mise à jour est réussie, false sinon.
+     */
     public function updateProfileImage(int $userId, string $profileImage): bool {
         $sql = "UPDATE `user` SET `profile_image` = :profile_image WHERE `id` = :user_id";
         $result = $this->db->getPDO()->prepare($sql);
