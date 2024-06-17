@@ -24,7 +24,7 @@
 
         <div class="account_information">
             <div class="perso_info">
-                <form action="" method="post" class="profile_form">
+                <form action="index.php?action=updateInfoUser" method="post" class="profile_form">
                     <h3>Vos informations personnelles</h3>
 
                     <label for="email">Adresse email :</label>

@@ -200,6 +200,29 @@ class AdminController {
         Utils::redirect('updateBookForm&id=' . $id);
     }
 
+
+    /**
+     * Met à jour les informations de l'utilisateur
+     * @return void
+     */
+    public function updateInfoUser() : void
+    {
+        $this->checkIfUserIsConnected();
+
+        $id = $_SESSION['user_id'];
+        $pseudo = Utils::request('pseudo');
+        $email = Utils::request('email');
+        $password = Utils::request('password');
+
+        // Hachage du mot de passe
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+        $userManager = new UserManager();
+        $userManager->updateInfoUser($id, $pseudo, $email, $hashedPassword);
+
+        Utils::redirect('myAccount');
+    }
+
     /**
      * Met à jour la photo d'un livre.
      * @return void

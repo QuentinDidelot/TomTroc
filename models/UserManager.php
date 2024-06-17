@@ -115,6 +115,26 @@ class UserManager extends AbstractEntityManager {
 
 
     /**
+     * Met à jour les informations de l'utilisateur dans la base de données
+     * @param int $userId L'ID de l'utilisateur
+     * @param string $pseudo Le pseudonyme de l'utilisateur
+     * @param string $email L'adresse e-mail de l'utilisateur
+     * @param string $hashedPassword Le mot de passe haché de l'utilisateur
+     * @return bool True si la mise à jour est réussie, false sinon
+     */
+    public function updateInfoUser(int $userId, string $pseudo, string $email, string $hashedPassword): bool
+    {
+        $sql = "UPDATE user SET pseudo = :pseudo, email = :email, password = :password WHERE id = :user_id";
+        $stmt = $this->db->getPDO()->prepare($sql);
+        return $stmt->execute([
+            'pseudo' => $pseudo,
+            'email' => $email,
+            'password' => $hashedPassword,
+            'user_id' => $userId,
+        ]);
+    }
+
+    /**
      * Mappe les données de la base de données à un objet User
      * @param array $data : les données de l'utilisateur
      * @return User : un objet User

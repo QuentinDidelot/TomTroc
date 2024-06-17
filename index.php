@@ -92,6 +92,11 @@ try {
             $bookController->updateBook();
             break;    
 
+        case 'updateInfoUser':
+            $bookController = new AdminController();
+            $bookController->updateInfoUser();
+            break;  
+
         case 'updateBookPhoto':
             $bookController = new AdminController();
             $bookController->updateBookPhoto();
