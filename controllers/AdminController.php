@@ -157,6 +157,21 @@ class AdminController {
     }
 
     /**
+     * Affiche la page "Messagerie" si l'utilisateur est connecté
+     * @return void
+     */
+    public function showMessenger() : void 
+    {
+        $this->checkIfUserIsConnected();
+
+        $userId = $_SESSION['user_id'];
+
+
+        $view = new View("Messagerie");
+        $view->render("messenger");
+    }
+
+    /**
      * Affichage du formulaire d'édition de livre.
      * @return void
      */
@@ -197,7 +212,7 @@ class AdminController {
         $bookManager = new BookManager();
         $bookManager->updateBook($id, $title, $author, $description, $availability);
 
-        Utils::redirect('updateBookForm&id=' . $id);
+        Utils::redirect('myAccount');
     }
 
 
@@ -322,7 +337,8 @@ class AdminController {
         }
     }
 
-    private function handleProfilePictureUpload(): array {
+    private function handleProfilePictureUpload(): array 
+    {
         $targetDir = "uploads/profile_pictures/"; // Dossier où sauvegarder les fichiers
         $targetFile = $targetDir . basename($_FILES["new_profile_image"]["name"]);
         $uploadOk = 1;

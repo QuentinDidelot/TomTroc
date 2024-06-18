@@ -40,13 +40,20 @@ try {
             break;
 
         case 'publicAccount':
-            $bookController = new UserController();
-            $bookController->showPublicAccount();
+            $userController = new UserController();
+            $userController->showPublicAccount();
             break;
 
-            
+        // Section messagerie
+
+        case 'messenger':
+            $adminController = new AdminController();
+            $adminController->showMessenger();
+            break;        
+
         // Section admin & connexion.    
-        
+    
+
         case 'inscriptionForm':
             $adminController = new AdminController();
             $adminController->displayInscriptionForm();
@@ -73,8 +80,8 @@ try {
             break;
 
         case 'myAccount' :
-            $bookController = new AdminController();
-            $bookController->showMyAccount();
+            $adminController = new AdminController();
+            $adminController->showMyAccount();
             break;
 
         case 'updateProfileImage':
@@ -88,23 +95,23 @@ try {
             break;
 
         case 'updateBook':
-            $bookController = new AdminController();
-            $bookController->updateBook();
+            $adminController = new AdminController();
+            $adminController->updateBook();
             break;    
 
         case 'updateInfoUser':
-            $bookController = new AdminController();
-            $bookController->updateInfoUser();
+            $adminController = new AdminController();
+            $adminController->updateInfoUser();
             break;  
 
         case 'updateBookPhoto':
-            $bookController = new AdminController();
-            $bookController->updateBookPhoto();
+            $adminController = new AdminController();
+            $adminController->updateBookPhoto();
             break;  
 
         case 'deleteBook':
-            $bookController = new AdminController();
-            $bookController->deleteBook();
+            $adminController = new AdminController();
+            $adminController->deleteBook();
             break; 
         default:
 

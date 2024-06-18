@@ -31,7 +31,7 @@
                     <input class="form_input" type="email" id="email" name="email" value="<?=htmlspecialchars($user->getEmail())?>" required>
                     
                     <label for="password">Mot de passe :</label>
-                    <input class="form_input" type="password" id="password" name="password" value="***************" required>
+                    <input class="form_input" type="password" id="password" name="password" value="" required>
                     
                     <label for="pseudo">Pseudo :</label>
                     <input class="form_input" type="text" id="pseudo" name="pseudo" value="<?= htmlspecialchars($user->getPseudo())?>" required>

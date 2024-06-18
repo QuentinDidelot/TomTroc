@@ -18,14 +18,14 @@
             <header>
             <nav>
                 <div class="nav_left">
-                    <a href="index.php?action=home"><img class="logo" src="./img/icones/header.png" alt="Logo TomTroc (TT)"></a>
+                    <img class="logo" src="./img/icones/header.png" alt="Logo TomTroc (TT)">
                     <span class="logo_title"> Tom Troc </span>
                     <a href="index.php?action=home">Accueil</a>
                     <a href="index.php?action=allBook" >Nos livres à l'échange</a>
                 </div>
 
                 <div class="nav_right">
-                    <a href="" ><i class="fa-regular fa-comments"></i> Messagerie</a>
+                    <a href="index.php?action=messenger" ><i class="fa-regular fa-comments"></i> Messagerie</a>
                     <a href="index.php?action=myAccount"><i class="fa-regular fa-user"></i> Mon compte</a>
                     <?php 
                     // Si on est connecté, on affiche le bouton de déconnexion, sinon, on affiche le bouton de connexion : 

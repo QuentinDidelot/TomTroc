@@ -94,24 +94,4 @@ class BookController
         }
     }
 
-    /**
-     * Met à jour le livre.
-     * @return void
-     */
-    public function updateBook(int $bookId, string $title, string $author, string $description, string $availability) : void
-    {
-        $sql = "UPDATE book 
-                SET title = :title, author = :author, description = :description, availability = :availability 
-                WHERE id = :bookId";
-        
-        $stmt = $this->db->getPDO()->prepare($sql);
-        $stmt->bindParam(':title', $title, PDO::PARAM_STR);
-        $stmt->bindParam(':author', $author, PDO::PARAM_STR);
-        $stmt->bindParam(':description', $description, PDO::PARAM_STR);
-        $stmt->bindParam(':availability', $availability, PDO::PARAM_STR);
-        $stmt->bindParam(':bookId', $bookId, PDO::PARAM_INT);
-        
-        $stmt->execute();
-    }
-
 }
