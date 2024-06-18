@@ -19,9 +19,12 @@
             <div class="message sent">Salut !</div>
             <div class="message received">Comment ça va ?</div>
         </div>
-        <div class="chatInput">
-            <input type="text" placeholder="Tapez votre message ici">
-            <button class="button_type_1">Envoyer</button>
+        <div >
+            <form class="chatInput" action="index.php?action=sendMessage" method="post">
+                <input type="hidden" name="recipient_id" value="">
+                <input type="text" name="content" placeholder="Tapez votre message ici">
+                <button type="submit" class="button_type_1">Envoyer</button>
+            </form>
         </div>
     </div>
 

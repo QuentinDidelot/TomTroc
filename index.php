@@ -45,11 +45,15 @@ try {
             break;
 
         // Section messagerie
-
         case 'messenger':
-            $adminController = new AdminController();
-            $adminController->showMessenger();
-            break;        
+            $messageController = new MessageController();
+            $messageController->showMessenger();
+            break;
+
+        case 'sendMessage':
+            $messageController = new MessageController();
+            $messageController->sendMessage();
+            break;     
 
         // Section admin & connexion.    
     

@@ -156,20 +156,7 @@ class AdminController {
         $view->render("myAccount", ['books' => $books, 'user' => $user]);
     }
 
-    /**
-     * Affiche la page "Messagerie" si l'utilisateur est connecté
-     * @return void
-     */
-    public function showMessenger() : void 
-    {
-        $this->checkIfUserIsConnected();
 
-        $userId = $_SESSION['user_id'];
-
-
-        $view = new View("Messagerie");
-        $view->render("messenger");
-    }
 
     /**
      * Affichage du formulaire d'édition de livre.

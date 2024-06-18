@@ -1066,6 +1066,7 @@ footer{
 
 .chatInput {
     display: flex;
+    flex-direction: row;
     padding: 20px;
     background-color: #f5f5f5;
 }
@@ -1079,7 +1080,9 @@ footer{
     font-size: large;
 }
 
-
+.chatInput .button_type_1{
+    width: 200px !important;
+}
 /******************************************
 *************** RESPONSIVE ************
 ******************************************/
