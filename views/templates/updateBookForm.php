@@ -11,7 +11,7 @@
             <form action="index.php?action=updateBookPhoto" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="bookId" value="<?= $book['id'] ?>">
                 <input type="file" name="new_book_image">
-                <input type="submit" value="Modifier la photo">
+                <input type="submit" class="profile_edit" value="Modifier la photo">
             </form>
 
 

@@ -53,7 +53,12 @@ try {
         case 'sendMessage':
             $messageController = new MessageController();
             $messageController->sendMessage();
-            break;     
+            break;
+
+        case 'viewChat':
+            $messageController = new MessageController();
+            $messageController->viewChat();
+            break;
 
         // Section admin & connexion.    
     

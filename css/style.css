@@ -690,6 +690,8 @@ label {
     color: var(--legendColor);
     cursor: pointer;
     text-decoration: underline;
+    background: none;
+    border: none;
 }
 
 
@@ -1005,16 +1007,16 @@ footer{
     padding: 0 0 20px 50px;
 }
 
-.messageList {
+.conversationList {
     margin-top: 20px;
 }
 
-.messageItem {
+.conversationItem {
     padding: 30px;
     cursor: pointer;
 }
 
-.messageItem:hover {
+.conversationItem:hover {
     background-color: var(--backgroundColorThree);
 }
 
@@ -1064,7 +1066,7 @@ footer{
     align-self: flex-end;
 }
 
-.chatInput {
+.chatInput>form {
     display: flex;
     flex-direction: row;
     padding: 20px;
