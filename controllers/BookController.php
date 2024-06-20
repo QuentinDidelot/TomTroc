@@ -77,11 +77,12 @@ class BookController
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['new_profile_image'])) {
             $userId = $_SESSION['user_id'];
             $profileImage = $_FILES['new_profile_image'];
-    
+        
+
             if ($profileImage['error'] === UPLOAD_ERR_OK) {
                 $targetDir = "uploads/profile_pictures/";
-                $targetFile = $targetDir . basename($profileImage["name"]);
-                move_uploaded_file($profileImage["tmp_name"], $targetFile);
+                $targetFile = basename($profileImage["name"]);
+                move_uploaded_file($profileImage["tmp_name"], $targetDir.$targetFile);
     
                 $userManager = new UserManager();
                 $userManager->updateProfileImage($userId, $targetFile);

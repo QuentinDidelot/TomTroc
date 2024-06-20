@@ -1,3 +1,4 @@
+
 <?php
 
 /**
@@ -5,10 +6,19 @@
  */
 class MessageManager extends AbstractEntityManager
 {
+
+    
+    /**
+     * Récupère les messages entre un utilisateur et un destinataire spécifique,
+     * ou tous les messages impliquant un utilisateur si aucun destinataire spécifique n'est fourni.
+     * @param int $userId L'ID de l'utilisateur dont on veut récupérer les messages.
+     * @param int|null $recipientId L'ID du destinataire spécifique, ou null pour récupérer tous les messages impliquant l'utilisateur.
+     * @return array Tableau contenant les messages.
+     */
     public function getMessages($userId, $recipientId = null) 
     {
         if ($recipientId !== null) {
-            $sql = "SELECT * FROM message 
+            $sql = "SELECT *, DATE_FORMAT(sent_date, '%d/%m %H:%i') AS formatted_sent_date FROM message 
                     WHERE (sender_id = :userId AND recipient_id = :recipientId) 
                     OR (sender_id = :recipientId AND recipient_id = :userId) 
                     ORDER BY sent_date ASC";
@@ -16,17 +26,25 @@ class MessageManager extends AbstractEntityManager
             $stmt->bindParam(':userId', $userId);
             $stmt->bindParam(':recipientId', $recipientId);
         } else {
-            $sql = "SELECT * FROM message 
+            $sql = "SELECT *, DATE_FORMAT(sent_date, '%d/%m %H:%i') AS formatted_sent_date FROM message 
                     WHERE sender_id = :userId OR recipient_id = :userId 
                     ORDER BY sent_date ASC";
             $stmt = $this->db->getPDO()->prepare($sql);
             $stmt->bindParam(':userId', $userId);
         }
-
+    
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Envoie un message d'un utilisateur à un destinataire spécifique.
+     * 
+     * @param int $senderId L'ID de l'utilisateur qui envoie le message.
+     * @param int $recipientId L'ID du destinataire du message.
+     * @param string $content Le contenu du message.
+     * @return bool Retourne true en cas de succès, false en cas d'échec.
+     */
     public function sendMessage($senderId, $recipientId, $content)
     {
 
@@ -36,25 +54,65 @@ class MessageManager extends AbstractEntityManager
     }
 
     /**
-     * Récupère toutes les conversations d'un utilisateur avec les détails du destinataire.
+     * Récupère les conversations d'un utilisateur avec les détails du destinataire.
+     * 
      * @param int $userId L'ID de l'utilisateur dont on veut récupérer les conversations.
      * @return array Tableau contenant les conversations.
      */
-    public function getConversations($userId)
+    public function getConversations($userId) 
     {
-        // Requête pour récupérer les conversations avec les détails du destinataire
-        $sql = "SELECT m.id, m.sender_id, m.recipient_id, m.content, m.sent_date,
-                         u.pseudo AS sender_name,
-                         u2.pseudo AS recipient_name
-                  FROM message m
-                  INNER JOIN user u ON m.sender_id = u.id
-                  INNER JOIN user u2 ON m.recipient_id = u2.id
-                  WHERE m.sender_id = ? OR m.recipient_id = ?
-                  GROUP BY m.sender_id, m.recipient_id
-                  ORDER BY m.sent_date DESC";
+        $sql = "SELECT 
+                    CASE
+                        WHEN sender_id = :userId THEN recipient_id
+                        ELSE sender_id
+                    END AS other_user_id,
+                    CASE
+                        WHEN sender_id = :userId THEN users2.pseudo
+                        ELSE users1.pseudo
+                    END AS other_user_name,
+
+                    MAX(sent_date) AS last_message_date,
+                    MAX(sent_date) AS last_message_sent_date,
+                    MAX(CASE
+                            WHEN sender_id = :userId THEN content
+                            ELSE NULL
+                        END) AS last_sent_message,
+                    MAX(CASE
+                            WHEN recipient_id = :userId THEN content
+                            ELSE NULL
+                        END) AS last_received_message,
+
+                    CASE
+                        WHEN recipient_id = :userId THEN users1.profile_image
+                        ELSE users2.profile_image
+                    END AS recipient_image
+
+
+                FROM
+                    (SELECT 
+                        sender_id, recipient_id, sent_date, content
+                    FROM 
+                        message
+                    WHERE 
+                        sender_id = :userId OR recipient_id = :userId
+                    ORDER BY 
+                        sent_date ASC
+                    ) AS subquery
+                JOIN
+                    user AS users1 ON subquery.sender_id = users1.id
+                JOIN
+                    user AS users2 ON subquery.recipient_id = users2.id
+                GROUP BY 
+                    other_user_id, other_user_name
+                ORDER BY 
+                    MAX(sent_date) DESC";
         
         $stmt = $this->db->getPDO()->prepare($sql);
-        $stmt->execute([$userId, $userId]);
+        $stmt->bindParam(':userId', $userId);
+        $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
+    
+
 }

@@ -7,7 +7,7 @@ class MessageController
 
     public function __construct()
     {
-        // Initialisez votre MessageManager dans le constructeur
+        
         $this->messageManager = new MessageManager();
         $this->conversationManager = new MessageManager();
     }
@@ -18,9 +18,8 @@ class MessageController
      */
     private function checkIfUserIsConnected() : void
     {
-        // Si l'utilisateur est connecté alors on récupère son ID.
+        // Si l'utilisateur n'est pas connecté, rediriger vers la page de connexion
         if (!isset($_SESSION['user_id'])) {
-            // Rediriger vers la page de connexion ou afficher une erreur
             Utils::redirect("connectionForm");
             exit;
         }
@@ -36,19 +35,22 @@ class MessageController
     
         $userId = $_SESSION['user_id'];
     
-        // Récupération des messages
-        $allMessages = $this->messageManager->getMessages($userId);
-    
         // Récupération des conversations
         $conversations = $this->conversationManager->getConversations($userId);
+
+        // Déterminer le recipientId de la conversation la plus récente par défaut
+        $recipientId = isset($conversations[0]['other_user_id']) ? $conversations[0]['other_user_id'] : null;
+
+        // Récupération des messages pour la conversation la plus récente
+        $messages = $recipientId ? $this->messageManager->getMessages($userId, $recipientId) : [];
     
         $view = new View("Messagerie");
         $view->render("messenger", [
-            'messages' => $allMessages,
-            'conversations' => $conversations
+            'messages' => $messages,
+            'conversations' => $conversations,
+            'recipientId' => $recipientId
         ]);
     }
-
 
     /**
      * Envoie un message à un destinataire spécifique.
@@ -67,39 +69,36 @@ class MessageController
                 // Redirection vers la vue de conversation avec le destinataire
                 Utils::redirect("viewChat&recipient_id=" . $recipientId);
             } else {
-                // Gestion de l'erreur d'envoi
                 echo "Erreur lors de l'envoi du message.";
             }
         }
     }
-    
 
     /**
      * Affiche la conversation avec un destinataire spécifique.
      * @return void
      */
-
-     public function viewChat() : void
-     {
-         $this->checkIfUserIsConnected();
+    public function viewChat() : void
+    {
+        $this->checkIfUserIsConnected();
          
-         $userId = $_SESSION['user_id'];
-         $recipientId = $_GET['recipient_id'] ?? null;
+        $userId = $_SESSION['user_id'];
+        $recipientId = $_GET['recipient_id'] ?? null;
          
-         if (!$recipientId) {
-             echo "Destinataire non spécifié.";
-             return;
-         }
+        if (!$recipientId) {
+            echo "Destinataire non spécifié.";
+            return;
+        }
          
-         $messages = $this->messageManager->getMessages($userId, $recipientId);
-         $conversations = $this->conversationManager->getConversations($userId);
+        $messages = $this->messageManager->getMessages($userId, $recipientId);
+        $conversations = $this->conversationManager->getConversations($userId);
          
-         $view = new View("Messagerie");
-         $view->render("messenger", [
-             'messages' => $messages,
-             'conversations' => $conversations,
-             'recipientId' => $recipientId
-         ]);
-     }
+        $view = new View("Messagerie");
+        $view->render("messenger", [
+            'messages' => $messages,
+            'conversations' => $conversations,
+            'recipientId' => $recipientId
+        ]);
+    }
 }
 ?>

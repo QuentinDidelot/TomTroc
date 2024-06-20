@@ -654,7 +654,7 @@ label {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    gap: 40px; /* Espace entre les deux colonnes */
+    gap: 40px;
 }
 
 .account_information {
@@ -891,31 +891,6 @@ label {
     min-height: 150px;
 }
 
-/******************************************
-*************** FOOTER ************
-******************************************/
-
-footer{
-    height: 70px;
-    background-color: var(--backgroundColorThree);
-    align-content: center;
-}
-
-.logo_footer{
-    width: 30px;
-}
-
-
-.links_container { 
-    display: flex;
-    justify-content: flex-end;
-    gap: 41px;
-    padding-right: 55px;
-    font-size: smaller;
-    color: var(--textColor);
-}
-
-
 
 
 /********************************************************
@@ -1014,6 +989,17 @@ footer{
 .conversationItem {
     padding: 30px;
     cursor: pointer;
+    position: relative;
+}
+
+.conversationItem .conversations {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none; 
+    color: inherit; 
+    padding: 10px; 
+    box-sizing: border-box; /* Pour inclure le padding dans la taille totale */
 }
 
 .conversationItem:hover {
@@ -1055,6 +1041,27 @@ footer{
     max-width: 60%;
 }
 
+.messageMeta {
+    font-size: 0.8em;
+    color: #888;
+    float: right; 
+}
+
+
+.messageContent {
+    clear: both; 
+}
+
+
+.message.sent .messageMeta {
+    float: right; 
+}
+
+
+.message.received .messageMeta {
+    float: left; 
+}
+
 .received {
     background-color: var(--backgroundColorThree);
     align-self: flex-start;
@@ -1085,6 +1092,34 @@ footer{
 .chatInput .button_type_1{
     width: 200px !important;
 }
+
+
+
+/******************************************
+*************** FOOTER ************
+******************************************/
+
+footer{
+    height: 70px;
+    background-color: var(--backgroundColorThree);
+    align-content: center;
+}
+
+.logo_footer{
+    width: 30px;
+}
+
+
+.links_container { 
+    display: flex;
+    justify-content: flex-end;
+    gap: 41px;
+    padding-right: 55px;
+    font-size: smaller;
+    color: var(--textColor);
+}
+
+
 /******************************************
 *************** RESPONSIVE ************
 ******************************************/
