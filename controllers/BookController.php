@@ -67,32 +67,6 @@ class BookController
         $view->render("allBook", ['books' => $books]);
     }
 
-    
-    /**
-     * Met à jour l'image de profil de l'utilisateur.
-     * @return void
-     */
-    public function updateProfileImage() 
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['new_profile_image'])) {
-            $userId = $_SESSION['user_id'];
-            $profileImage = $_FILES['new_profile_image'];
-        
 
-            if ($profileImage['error'] === UPLOAD_ERR_OK) {
-                $targetDir = "uploads/profile_pictures/";
-                $targetFile = basename($profileImage["name"]);
-                move_uploaded_file($profileImage["tmp_name"], $targetDir.$targetFile);
-    
-                $userManager = new UserManager();
-                $userManager->updateProfileImage($userId, $targetFile);
-    
-                // Redirection vers la page de profil après la mise à jour
-                Utils::redirect("myAccount");
-            } else {
-                throw new Exception("Erreur lors du téléchargement de l'image.");
-            }
-        }
-    }
 
 }

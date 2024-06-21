@@ -5,7 +5,7 @@
 <section class="publicAccountContainer">
     <div class="publicAccountProfile">
         <div class="profile_info">
-            <img src="<?= !empty($user->getProfileImage()) ? htmlspecialchars($user->getProfileImage()) : 'img/icones/default_profile_image.png' ?>" class="profile_picture" alt="image de profil"><br><br>
+        <img src="uploads/profile_pictures/<?= $user->getProfileImage() ? htmlspecialchars($user->getProfileImage()) : 'default_profile_image.png' ?>" class="profile_picture" alt="image de profil"><br><br>
             <span>________________________</span><br><br>
         </div>
 

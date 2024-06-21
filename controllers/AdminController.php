@@ -311,18 +311,24 @@ class AdminController {
             if ($profileImage['error'] === UPLOAD_ERR_OK) {
                 $targetDir = "uploads/profile_pictures/";
                 $targetFile = $targetDir . basename($profileImage["name"]);
-                move_uploaded_file($profileImage["tmp_name"], $targetFile);
     
-                $userManager = new UserManager();
-                $userManager->updateProfileImage($userId, $targetFile);
-    
-                // Redirection vers la page de profil après la mise à jour
-                Utils::redirect("myAccount");
+                // Déplacer le fichier téléchargé vers le dossier cible
+                if (move_uploaded_file($profileImage["tmp_name"], $targetFile)) {
+                    $userManager = new UserManager();
+                    // Stocker uniquement le nom de fichier ou le chemin relatif dans la base de données
+                    $userManager->updateProfileImage($userId, basename($targetFile));
+        
+                    // Redirection vers la page de profil après la mise à jour
+                    Utils::redirect("myAccount");
+                } else {
+                    throw new Exception("Erreur lors du déplacement de l'image.");
+                }
             } else {
                 throw new Exception("Erreur lors du téléchargement de l'image.");
             }
         }
     }
+    
 
     private function handleProfilePictureUpload(): array 
     {

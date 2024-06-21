@@ -18,7 +18,7 @@ class MessageManager extends AbstractEntityManager
     public function getMessages($userId, $recipientId = null) 
     {
         if ($recipientId !== null) {
-            $sql = "SELECT *, DATE_FORMAT(sent_date, '%d/%m %H:%i') AS formatted_sent_date FROM message 
+            $sql = "SELECT *, DATE_FORMAT(sent_date, '%d.%m %H:%i') AS formatted_sent_date FROM message 
                     WHERE (sender_id = :userId AND recipient_id = :recipientId) 
                     OR (sender_id = :recipientId AND recipient_id = :userId) 
                     ORDER BY sent_date ASC";
@@ -26,7 +26,7 @@ class MessageManager extends AbstractEntityManager
             $stmt->bindParam(':userId', $userId);
             $stmt->bindParam(':recipientId', $recipientId);
         } else {
-            $sql = "SELECT *, DATE_FORMAT(sent_date, '%d/%m %H:%i') AS formatted_sent_date FROM message 
+            $sql = "SELECT *, DATE_FORMAT(sent_date, '%d.%m %H:%i') AS formatted_sent_date FROM message 
                     WHERE sender_id = :userId OR recipient_id = :userId 
                     ORDER BY sent_date ASC";
             $stmt = $this->db->getPDO()->prepare($sql);

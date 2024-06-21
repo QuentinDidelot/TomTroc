@@ -4,7 +4,7 @@
 
         <div class="account_information">
             <div class="profile_info">
-                <img src="uploads/profile_pictures/<?= $user->getProfileImage() ? htmlspecialchars($user->getProfileImage()) : 'img/icones/default_profile_image.png' ?>" class="profile_picture" alt="image de profil">
+                <img src="uploads/profile_pictures/<?= $user->getProfileImage() ? htmlspecialchars($user->getProfileImage()) : 'default_profile_image.png' ?>" class="profile_picture" alt="image de profil">
                 <form action="index.php?action=updateProfileImage" method="post" enctype="multipart/form-data" id="profileImageForm">
                     <label for="new_profile_image" class="profile_edit" style="cursor: pointer;">Modifier</label>
                     <input type="file" name="new_profile_image" id="new_profile_image" style="display: none;" onchange="submitFormOnce()">

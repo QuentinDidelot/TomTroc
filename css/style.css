@@ -962,6 +962,11 @@ label {
 ******************************************/
 
 
+
+/******************************************
+*************** Fil de discussion************
+******************************************/
+
 .messengerContainer {
     display: flex;
     justify-content: center;
@@ -972,14 +977,17 @@ label {
 
 .allMessages {
     width: 25%;
+    min-width: max-content;
     padding-top: 80px;
     box-sizing: border-box;
     background-color: var(--backgroundColorTwo);
+    display: flex;
+    flex-direction: column;
 }
 
-.allMessages>h1 {
+.allMessages > h1 {
     margin-top: 0;
-    padding: 0 0 20px 50px;
+    padding: 0 50px 20px 50px;
 }
 
 .conversationList {
@@ -987,7 +995,7 @@ label {
 }
 
 .conversationItem {
-    padding: 30px;
+    padding: 10px;
     cursor: pointer;
     position: relative;
 }
@@ -996,16 +1004,55 @@ label {
     display: block;
     width: 100%;
     height: 100%;
-    text-decoration: none; 
-    color: inherit; 
-    padding: 10px; 
-    box-sizing: border-box; /* Pour inclure le padding dans la taille totale */
+    text-decoration: none;
+    color: inherit;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 .conversationItem:hover {
     background-color: var(--backgroundColorThree);
 }
 
+.conversationChoice {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile_picture_messenger {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.conversationText {
+    flex-grow: 1;
+}
+
+.conversationName {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.conversationMessage {
+    margin: 0;
+    font-size: 14px;
+    color: #888;
+}
+
+.conversationTime {
+    font-size: 12px;
+    color: #888;
+}
+
+
+
+/******************************************
+*************** Partie Chat ************
+******************************************/
 
 .currentChat {
     width: 70%;
@@ -1016,6 +1063,19 @@ label {
 
 }
 
+.profile_picture_messenger {
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    object-fit: cover;
+}
+
+.profile_picture_message {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 5px;
+}
 
 .chatHeader {
     display: flex;
@@ -1035,36 +1095,25 @@ label {
 }
 
 .message {
+    display: flex;
+    flex-direction: column;
     margin: 10px 0;
     padding: 10px;
     border-radius: 10px;
     max-width: 60%;
+    background-color: #fff;
 }
 
-.messageMeta {
-    font-size: 0.8em;
-    color: #888;
-    float: right; 
+.messageDateAndPicture{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
 }
-
-
-.messageContent {
-    clear: both; 
-}
-
-
-.message.sent .messageMeta {
-    float: right; 
-}
-
-
-.message.received .messageMeta {
-    float: left; 
-}
-
 .received {
     background-color: var(--backgroundColorThree);
     align-self: flex-start;
+    flex-direction: row;
 }
 
 .sent {

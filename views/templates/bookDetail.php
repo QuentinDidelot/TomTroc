@@ -24,7 +24,7 @@
                 <div class="detail_description"><?= $book['description'] ?></div>
                 <h3 class="subtitle">Propriétaire</h3>
                 <a href="index.php?action=publicAccount&userId=<?= $book['user_id'] ?>" class="book_owner">
-                    <img src="<?= !empty($book['profile_image']) ? htmlspecialchars($book['profile_image']) : 'img/icones/default_profile_image.png' ?>" class="detail_profile_picture" alt="image de profil">
+                    <img src="uploads/profile_pictures/<?= !empty($book['profile_image']) ? htmlspecialchars($book['profile_image']) : 'default_profile_image.png' ?>" class="detail_profile_picture" alt="image de profil">
                     <span><?= $book['pseudo'] ?></span>
                 </a>
             </div>
