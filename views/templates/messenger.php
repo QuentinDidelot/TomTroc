@@ -57,28 +57,20 @@
     <div class="chatMessages">
         <?php if (!empty($messages)): ?>
             <?php foreach ($messages as $message): ?>
-                <div class="message <?= $message['sender_id'] == $_SESSION['user_id'] ? 'sent' : 'received' ?>">
-
-                    <div class="messageDateAndPicture">
-                        <?php if ($message['sender_id'] != $_SESSION['user_id']): ?>
-                            <img src="uploads/profile_pictures/<?= $conversation['recipient_image'] ? : 'default_profile_image.png' ?>" class="profile_picture_message" alt="">
-                        <?php endif; ?>
-                        <div class="messageDate">
+                    <div class="message <?= $message['sender_id'] == $_SESSION['user_id'] ? 'sent' : 'received' ?>">
+                        <div class="messageDateAndPicture">  
+                            <?php if ($message['sender_id'] != $_SESSION['user_id']): ?>
+                                <img src="uploads/profile_pictures/<?= $conversation['recipient_image'] ? : 'default_profile_image.png' ?>" class="profile_picture_message" alt="">
+                            <?php endif; ?>
                             <?= htmlspecialchars($message['formatted_sent_date']) ?>
                         </div>
-                    </div>
-
-
-                    <div class="messageContent">
-                        <?= htmlspecialchars($message['content']) ?>
-                    </div>
-
-
-
+                        <div class="messageContent <?= $message['sender_id'] == $_SESSION['user_id'] ? 'sent' : 'received' ?>">
+                            <?= htmlspecialchars($message['content']) ?>
+                        </div>
                 </div>
             <?php endforeach; ?>
-        <?php else: ?>
-            <p>Aucun message dans cette conversation.</p>
+            <?php else: ?>
+                <p>Aucun message dans cette conversation.</p>
         <?php endif; ?>
     </div>
 

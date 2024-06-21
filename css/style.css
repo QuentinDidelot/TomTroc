@@ -1097,30 +1097,51 @@ label {
 .message {
     display: flex;
     flex-direction: column;
-    margin: 10px 0;
     padding: 10px;
     border-radius: 10px;
     max-width: 60%;
-    background-color: #fff;
+}
+
+.messageContent{
+    padding: 10px;
+    border-radius: 7px;
+}
+
+.messageContent.sent {
+    background-color: #EDF2F6;
+}
+
+
+.messageContent.received {
+    background-color: var(--backgroundColorThree);
+}
+
+.received {
+    align-self: flex-start;
+}
+
+.sent {
+    align-self: flex-end;
 }
 
 .messageDateAndPicture{
     display: flex;
     flex-direction: row;
     align-items: center;
+    color: var(--legendColor);
     
 }
-.received {
-    background-color: var(--backgroundColorThree);
-    align-self: flex-start;
-    flex-direction: row;
+
+.sent .messageDateAndPicture{
+    justify-content: flex-end;
 }
 
-.sent {
-    background-color: #EDF2F6;
-    color: black;
-    align-self: flex-end;
+.received .messageDateAndPicture{
+    justify-content: flex-start;
 }
+
+
+
 
 .chatInput>form {
     display: flex;
