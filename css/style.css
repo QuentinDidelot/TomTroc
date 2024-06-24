@@ -984,6 +984,9 @@ label {
     flex-direction: column;
 }
 
+.activeConversation {
+    background-color:var(--backgroundColorThree);
+}
 .allMessages > h1 {
     margin-top: 0;
     padding: 0 50px 20px 50px;

@@ -25,7 +25,22 @@
                 </div>
 
                 <div class="nav_right">
-                    <a href="index.php?action=messenger" ><i class="fa-regular fa-comments"></i> Messagerie</a>
+                <?php   
+                    $conversationManager = new MessageManager();
+                    $conversations = $conversationManager->getConversations($_SESSION['user_id']);
+
+                    if (!empty($conversations)) {
+                        $latestConversationRecipientId = $conversations[0]['other_user_id']; 
+                        $link = "index.php?action=viewChat&recipient_id=" . urlencode($latestConversationRecipientId);
+                    } else {
+                        
+                        $latestConversationRecipientId = null;
+                        $link = "index.php?action=messenger";
+                    }
+                ?>
+
+<a href="<?= $link ?>"><i class="fa-regular fa-comments"></i> Messagerie</a>
+
                     <a href="index.php?action=myAccount"><i class="fa-regular fa-user"></i> Mon compte</a>
                     <?php 
                     // Si on est connecté, on affiche le bouton de déconnexion, sinon, on affiche le bouton de connexion : 

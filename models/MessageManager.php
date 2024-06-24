@@ -1,4 +1,3 @@
-
 <?php
 
 /**
@@ -7,7 +6,6 @@
 class MessageManager extends AbstractEntityManager
 {
 
-    
     /**
      * Récupère les messages entre un utilisateur et un destinataire spécifique,
      * ou tous les messages impliquant un utilisateur si aucun destinataire spécifique n'est fourni.
@@ -32,7 +30,7 @@ class MessageManager extends AbstractEntityManager
             $stmt = $this->db->getPDO()->prepare($sql);
             $stmt->bindParam(':userId', $userId);
         }
-    
+
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -104,7 +102,6 @@ class MessageManager extends AbstractEntityManager
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
-    
-
 }
+
+?>

@@ -17,8 +17,8 @@
         </div>
 
         <div class="button_container">
-            <a href="" class="button_type_2">Écrire un message</a>
-        </div>
+    <a href="index.php?action=messenger&recipient_id=<?= $user->getId() ?>" class="button_type_1">Envoyer un message</a>
+</div>
     </div>
 
     <div class="adminBookProfile">
