@@ -47,8 +47,7 @@ class MessageManager extends AbstractEntityManager
      */
     public function sendMessage($senderId, $recipientId, $content)
     {
-
-        $sql = "INSERT INTO message (sender_id, recipient_id, content) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO message (sender_id, recipient_id, content, sent_date) VALUES (?, ?, ?, NOW())";
         $stmt = $this->db->getPDO()->prepare($sql);
         return $stmt->execute([$senderId, $recipientId, $content]);
     }
@@ -70,38 +69,31 @@ class MessageManager extends AbstractEntityManager
                         WHEN sender_id = :userId THEN users2.pseudo
                         ELSE users1.pseudo
                     END AS other_user_name,
-
                     MAX(sent_date) AS last_message_date,
-                    MAX(sent_date) AS last_message_sent_date,
-                    MAX(CASE
-                            WHEN sender_id = :userId THEN content
-                            ELSE NULL
-                        END) AS last_sent_message,
-                    MAX(CASE
-                            WHEN recipient_id = :userId THEN content
-                            ELSE NULL
-                        END) AS last_received_message,
-
+                    (SELECT content
+                     FROM message
+                     WHERE (sender_id = conversations.sender_id AND recipient_id = conversations.recipient_id) 
+                     OR (sender_id = conversations.recipient_id AND recipient_id = conversations.sender_id)
+                     ORDER BY sent_date DESC
+                     LIMIT 1) AS last_message,
                     CASE
                         WHEN recipient_id = :userId THEN users1.profile_image
                         ELSE users2.profile_image
                     END AS recipient_image
-
-
                 FROM
                     (SELECT 
-                        sender_id, recipient_id, sent_date, content
+                        sender_id, recipient_id, sent_date
                     FROM 
                         message
                     WHERE 
                         sender_id = :userId OR recipient_id = :userId
                     ORDER BY 
                         sent_date ASC
-                    ) AS subquery
+                    ) AS conversations
                 JOIN
-                    user AS users1 ON subquery.sender_id = users1.id
+                    user AS users1 ON conversations.sender_id = users1.id
                 JOIN
-                    user AS users2 ON subquery.recipient_id = users2.id
+                    user AS users2 ON conversations.recipient_id = users2.id
                 GROUP BY 
                     other_user_id, other_user_name
                 ORDER BY 
