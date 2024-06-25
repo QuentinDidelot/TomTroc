@@ -1,3 +1,9 @@
+<?php
+    /**
+     * Affichage de la page pour modifier les livres
+     */
+?>
+
 <nav>
     <a href="index.php?action=myAccount" class="breadcrumb">← Retour</a>
     <h1 class="updateInfoTitle">Modifier les informations</h1>

@@ -1,3 +1,9 @@
+<?php
+    /**
+     * Affichage des détails du livre
+     */
+?>
+
 <nav class="breadcrumb">
     <a href="index.php?action=allBook">Nos livres</a>
     <span class="separator">></span>

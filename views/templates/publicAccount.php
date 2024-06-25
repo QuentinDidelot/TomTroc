@@ -1,3 +1,9 @@
+<?php
+    /**
+     * Affichage de la page "Compte" accessible à tous les utilisateurs
+     */
+?>
+
 <nav class="breadcrumb">
     <a href="index.php?action=allBook">← Nos livres</a>
 </nav>

@@ -31,12 +31,12 @@ class AdminController {
      */
     public function inscriptionUser(): void
     {
-        // Récupérer les données du formulaire
+        // Récupère les données du formulaire
         $pseudo = Utils::request('pseudo');
         $email = Utils::request('email');
         $password = Utils::request('password');
     
-        // Vérifier si l'email est déjà utilisé
+        // Vérifie si l'email est déjà utilisé
         $userManager = new UserManager();
         if ($userManager->emailExists($email)) {
             $errorMessage = "Cet email est déjà utilisé. Veuillez en choisir un autre.";
@@ -45,13 +45,11 @@ class AdminController {
             exit;
         }
     
-        // Appeler le manager pour inscrire l'utilisateur
         $result = $userManager->inscriptionUser($pseudo, $email, $password);
     
         if ($result['status'] === 'success') {
-            // Ajouter un message de succès à la session
             $_SESSION['success_inscription'] = "Inscription réussie. Vous pouvez maintenant vous connecter.";
-            // Redirection vers la page de connexion ou un autre succès
+            // Redirection vers la page de connexion
             Utils::redirect("connectionForm");
             exit;
         } else {
@@ -98,7 +96,7 @@ class AdminController {
     
             // On connecte l'utilisateur.
             $_SESSION['user'] = $user;
-            $_SESSION['user_id'] = $user->getId();  // Assurez-vous que cette méthode existe et retourne l'ID utilisateur
+            $_SESSION['user_id'] = $user->getId();
     
             // On redirige vers la page d'accueil.
             Utils::redirect("home");
@@ -114,10 +112,7 @@ class AdminController {
      */
     public function disconnectUser() : void 
     {
-        // On déconnecte l'utilisateur.
         unset($_SESSION['user_id']);
-
-        // On redirige vers la page d'accueil.
         Utils::redirect("home");
     }
 
@@ -128,9 +123,7 @@ class AdminController {
      */
     private function checkIfUserIsConnected() : void
     {
-        // Si l'utilisateur est connecté alors on récupère son ID.
         if (!isset($_SESSION['user_id'])) {
-            // Rediriger vers la page de connexion ou afficher une erreur
             Utils::redirect("connectionForm");
             exit;
         }
@@ -334,13 +327,10 @@ class AdminController {
                 $targetDir = "uploads/profile_pictures/";
                 $targetFile = $targetDir . basename($profileImage["name"]);
     
-                // Déplacer le fichier téléchargé vers le dossier cible
                 if (move_uploaded_file($profileImage["tmp_name"], $targetFile)) {
                     $userManager = new UserManager();
-                    // Stocker uniquement le nom de fichier ou le chemin relatif dans la base de données
                     $userManager->updateProfileImage($userId, basename($targetFile));
-        
-                    // Redirection vers la page de profil après la mise à jour
+    
                     Utils::redirect("myAccount");
                 } else {
                     throw new Exception("Erreur lors du déplacement de l'image.");

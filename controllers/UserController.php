@@ -14,10 +14,9 @@ class UserController {
             if (isset($_GET['userId'])) {
                 $userId = intval($_GET['userId']);
                 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-                $limit = 5; // Nombre de livres par page
+                $limit = 5;
                 $offset = ($page - 1) * $limit;
     
-                // Assurez-vous que $db est votre connexion à la base de données
                 $userManager = new UserManager(); 
                 $user = $userManager->getUserById($userId);
     
@@ -28,12 +27,11 @@ class UserController {
                     $totalBooks = $bookManager->countBooksByUserId($userId);
                     $totalPages = ceil($totalBooks / $limit);
     
-                    // Passer les données à la vue
                     $view = new View("Profil public de l'utilisateur");
                     $view->render("publicAccount", [
                         'user' => $user,
                         'books' => $books,
-                        'totalBooks' => $totalBooks, // Passer le nombre total de livres
+                        'totalBooks' => $totalBooks,
                         'currentPage' => $page,
                         'totalPages' => $totalPages
                     ]);

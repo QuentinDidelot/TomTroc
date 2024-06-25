@@ -1,3 +1,9 @@
+<?php
+    /**
+     * Affichage du formulaire d'inscription
+     */
+?>
+
 <section class="connexion_form">
     <div class="left_half_connexion">
         <div class="form_container">

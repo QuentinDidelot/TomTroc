@@ -1,3 +1,9 @@
+<?php
+    /**
+     * Affichage de la page "Mon Compte" seulement si on est connecté
+     */
+?>
+
 <h1 class="account_title">Mon compte</h1>
 
         <?php if (isset($_SESSION['success_message'])): ?>

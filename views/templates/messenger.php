@@ -1,3 +1,9 @@
+<?php
+    /**
+     * Affichage de la messagerie
+     */
+?>
+
 <section class="messengerContainer">
     <div class="allMessages">
         <h1>Messagerie</h1>

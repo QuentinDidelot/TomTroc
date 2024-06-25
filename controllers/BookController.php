@@ -42,7 +42,7 @@ class BookController
         }
     
         $bookManager = new BookManager();
-        $book = $bookManager->getBookById((int)$id); // Cast to int to ensure type
+        $book = $bookManager->getBookById((int)$id);
         if (!$book) {
             throw new Exception("Le livre demandé n'existe pas.");
         }
