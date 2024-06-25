@@ -5,14 +5,17 @@
 
             <h1 class="form_title">Connexion</h1>
 
-            <?php
-            // Afficher le message d'erreur s'il existe dans la session
-            if (isset($_SESSION['error'])) {
-                echo '<div class="error-message">' . $_SESSION['error'] . '</div>';
-                // Une fois affiché, supprimer le message d'erreur de la session
-                unset($_SESSION['error']);
-            }
-            ?>
+            <?php if (!empty($errorMessage)) : ?>
+                <div class="error-message"><?= $errorMessage ?></div>
+            <?php endif; ?>
+
+            <?php if (isset($_SESSION['success_inscription'])): ?>
+                <div class="success_message">
+                    <?= htmlspecialchars($_SESSION['success_inscription']) ?>
+                    <?php unset($_SESSION['success_inscription']); ?>
+                </div>
+            <?php endif; ?>
+
             <form action="index.php?action=connectUser" method="post">
                 <label for="email">Adresse mail :</label>
                 <input class="form_input" type="email" id="email" name="email" required>

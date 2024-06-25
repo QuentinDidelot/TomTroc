@@ -3,7 +3,7 @@
         <?php if (isset($_SESSION['success_message'])): ?>
             <div class="success_message">
                 <?= htmlspecialchars($_SESSION['success_message']) ?>
-                <?php unset($_SESSION['success_message']); e ?>
+                <?php unset($_SESSION['success_message']); ?>
             </div>
         <?php endif; ?>
         <?php if (isset($_SESSION['error_message'])): ?>

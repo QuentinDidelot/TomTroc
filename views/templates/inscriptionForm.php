@@ -3,10 +3,6 @@
         <div class="form_container">
             <h1 class="form_title">Inscription</h1>
 
-            <?php if (!empty($errorMessage)) : ?>
-                <div class="error-message"><?= $errorMessage ?></div>
-            <?php endif; ?>
-
             <form action="index.php?action=inscriptionUser" method="post">
                 <label for="pseudo">Pseudo :</label>
                 <input class="form_input" type="pseudo" id="pseudo" name="pseudo" required>

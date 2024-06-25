@@ -29,13 +29,13 @@ class AdminController {
      * Inscription du visiteur
      * @return void
      */
-    public function inscriptionUser() : void
+    public function inscriptionUser(): void
     {
         // Récupérer les données du formulaire
         $pseudo = Utils::request('pseudo');
         $email = Utils::request('email');
         $password = Utils::request('password');
-
+    
         // Vérifier si l'email est déjà utilisé
         $userManager = new UserManager();
         if ($userManager->emailExists($email)) {
@@ -49,9 +49,10 @@ class AdminController {
         $result = $userManager->inscriptionUser($pseudo, $email, $password);
     
         if ($result['status'] === 'success') {
+            // Ajouter un message de succès à la session
+            $_SESSION['success_inscription'] = "Inscription réussie. Vous pouvez maintenant vous connecter.";
             // Redirection vers la page de connexion ou un autre succès
-            $view = new View("Accueil");
-            $view->render("home");
+            Utils::redirect("connectionForm");
             exit;
         } else {
             // Affichage du message d'erreur
@@ -59,6 +60,7 @@ class AdminController {
             $view->render("inscriptionForm", ['errorMessage' => $result['message']]);
         }
     }
+    
     
 
     /**
@@ -221,8 +223,26 @@ class AdminController {
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
         $userManager = new UserManager();
-        $userManager->updateInfoUser($id, $pseudo, $email, $hashedPassword);
+          // Validation des données
+          if (empty($pseudo) || empty($email) || empty($password)) {
+            $_SESSION['error_message'] = "Tous les champs sont obligatoires.";
+            Utils::redirect("showMyAccount");
+            exit;
+        }
 
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $_SESSION['error_message'] = "Adresse e-mail invalide.";
+            Utils::redirect("showMyAccount");
+            exit;
+        }
+
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+        if ($userManager->updateInfoUser($id, $pseudo, $email, $hashedPassword)) {
+            $_SESSION['success_message'] = "Les informations de votre profil ont été mises à jour avec succès.";
+        } else {
+            $_SESSION['error_message'] = "Une erreur est survenue lors de la mise à jour de votre profil.";
+        }
 
         Utils::redirect('myAccount');
     }
