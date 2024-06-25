@@ -1,7 +1,19 @@
 <h1 class="account_title">Mon compte</h1>
 
-    <section class="account_container">
+        <?php if (isset($_SESSION['success_message'])): ?>
+            <div class="success_message">
+                <?= htmlspecialchars($_SESSION['success_message']) ?>
+                <?php unset($_SESSION['success_message']); e ?>
+            </div>
+        <?php endif; ?>
+        <?php if (isset($_SESSION['error_message'])): ?>
+            <div class="error_message">
+                <?= htmlspecialchars($_SESSION['error_message']) ?>
+                <?php unset($_SESSION['error_message']); ?>
+            </div>
+        <?php endif; ?>
 
+    <section class="account_container">
         <div class="account_information">
             <div class="profile_info">
                 <img src="uploads/profile_pictures/<?= $user->getProfileImage() ? htmlspecialchars($user->getProfileImage()) : 'default_profile_image.png' ?>" class="profile_picture" alt="image de profil">

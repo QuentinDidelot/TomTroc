@@ -150,6 +150,7 @@ class UserManager extends AbstractEntityManager {
             'password' => $hashedPassword,
             'user_id' => $userId,
         ]);
+        
     }
 
     /**

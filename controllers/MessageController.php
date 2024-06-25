@@ -27,29 +27,25 @@ class MessageController
      * @return void
      */
     public function showMessenger() : void 
-    {
-        $this->checkIfUserIsConnected();
-        
-        $userId = $_SESSION['user_id'];
-        
-        // Récupération des conversations
-        $conversations = $this->messageManager->getConversations($userId);
+{
+    $this->checkIfUserIsConnected();
     
-        // Déterminer le recipientId de la conversation la plus récente par défaut
-        $recipientId = isset($conversations[0]['other_user_id']) ? $conversations[0]['other_user_id'] : null;
+    $userId = $_SESSION['user_id'];
     
-        // Récupération des messages pour la conversation la plus récente
-        $messages = $recipientId ? $this->messageManager->getMessages($userId, $recipientId) : [];
-        
+    // Récupération des conversations
+    $conversations = $this->messageManager->getConversations($userId);
 
-        
-        $view = new View("Messagerie");
-        $view->render("messenger", [
-            'messages' => $messages,
-            'conversations' => $conversations,
-            'recipientId' => $recipientId
-        ]);
-    }
+    // Récupération des messages pour le destinataire spécifique ou un tableau vide s'il n'y a pas de destinataire
+    $recipientId = $_GET['recipient_id'] ?? null;
+    $messages = $recipientId ? $this->messageManager->getMessages($userId, $recipientId) : [];
+    
+    $view = new View("Messagerie");
+    $view->render("messenger", [
+        'messages' => $messages,
+        'conversations' => $conversations,
+        'recipientId' => $recipientId
+    ]);
+}
     
 
     /**

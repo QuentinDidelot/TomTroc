@@ -26,9 +26,11 @@
 
                 <div class="nav_right">
                 <?php   
+                    if (isset($_SESSION['user_id'])) {
+
                     $conversationManager = new MessageManager();
                     $conversations = $conversationManager->getConversations($_SESSION['user_id']);
-
+                }
                     if (!empty($conversations)) {
                         $latestConversationRecipientId = $conversations[0]['other_user_id']; 
                         $link = "index.php?action=viewChat&recipient_id=" . urlencode($latestConversationRecipientId);
@@ -39,7 +41,7 @@
                     }
                 ?>
 
-<a href="<?= $link ?>"><i class="fa-regular fa-comments"></i> Messagerie</a>
+                    <a href="<?= $link ?>"><i class="fa-regular fa-comments"></i> Messagerie</a>
 
                     <a href="index.php?action=myAccount"><i class="fa-regular fa-user"></i> Mon compte</a>
                     <?php 

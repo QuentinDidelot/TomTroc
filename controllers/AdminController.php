@@ -215,12 +215,14 @@ class AdminController {
         $pseudo = Utils::request('pseudo');
         $email = Utils::request('email');
         $password = Utils::request('password');
+        
 
         // Hachage du mot de passe
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
         $userManager = new UserManager();
         $userManager->updateInfoUser($id, $pseudo, $email, $hashedPassword);
+
 
         Utils::redirect('myAccount');
     }

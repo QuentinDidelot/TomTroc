@@ -66,7 +66,7 @@
                     <div class="message <?= $message['sender_id'] == $_SESSION['user_id'] ? 'sent' : 'received' ?>">
                         <div class="messageDateAndPicture">  
                             <?php if ($message['sender_id'] != $_SESSION['user_id']): ?>
-                                <img src="uploads/profile_pictures/<?= $message['recipient_image'] ?>" class="profile_picture_message" alt="">
+                                <img src="uploads/profile_pictures/<?= $recipientImage ?>" class="profile_picture_message" alt="">
                             <?php endif; ?>
                             <?= htmlspecialchars($message['formatted_sent_date']) ?>
                         </div>
