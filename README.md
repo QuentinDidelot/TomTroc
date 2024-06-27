@@ -9,4 +9,4 @@ Cette association vous a demandé de développer de zéro son site web de mise e
 
 ======================================
 
-........... à suivre
+Importez le fichier .sql fourni dans le dossier pour utiliser la base de données.
