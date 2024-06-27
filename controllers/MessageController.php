@@ -86,10 +86,10 @@ class MessageController
             return;
         }
          
-        // Charger les messages pour la conversation en cours
+        // Charge les messages pour la conversation en cours
         $messages = $this->messageManager->getMessages($userId, $recipientId);
          
-        // Charger les conversations de l'utilisateur pour l'affichage dans la vue
+        // Charge les conversations de l'utilisateur pour l'affichage dans la vue
         $conversations = $this->messageManager->getConversations($userId);
          
         $view = new View("Messagerie");
