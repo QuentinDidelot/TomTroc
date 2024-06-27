@@ -91,7 +91,7 @@
         <div class="chatInput">
             <form action="index.php?action=sendMessage" method="post">
                 <input type="hidden" name="recipient_id" value="<?= $recipientId ?>">
-                <input type="text" name="content" placeholder="Tapez votre message ici">
+                <input type="text" name="content" autocomplete="off"  placeholder="Tapez votre message ici">
                 <button type="submit" class="button_type_1">Envoyer</button>
             </form>
         </div>
