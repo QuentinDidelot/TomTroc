@@ -10,3 +10,8 @@ Cette association vous a demandé de développer de zéro son site web de mise e
 ======================================
 
 Importez le fichier .sql fourni dans le dossier pour utiliser la base de données.
+
+======================================
+
+Version de PHP : PHP 8.3.0
+Base de données : MySql 
