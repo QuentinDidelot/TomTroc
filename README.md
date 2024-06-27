@@ -11,6 +11,10 @@ Cette association vous a demandé de développer de zéro son site web de mise e
 
 Importez le fichier .sql fourni dans le dossier pour utiliser la base de données.
 
+Pour se connecter avec le comtpe "principal" sur le site :
+Adresse mail : admin@admin.com 
+Mdp : admin
+
 ======================================
 
 Version de PHP : PHP 8.3.0
