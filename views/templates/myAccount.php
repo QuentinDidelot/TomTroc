@@ -63,6 +63,12 @@
         </div>
     </section>
 
+    <section class="addbook">
+        <div class="button_container">
+            <a href="index.php?action=addBookForm" class="button_type_1">Ajouter un livre</a>
+        </div>
+    </section>
+
     <section class="adminBook">
         <div class="bookLine header">
             <div class="admin_title">Photo</div>

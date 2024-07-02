@@ -118,6 +118,16 @@ try {
             $adminController->updateBookPhoto();
             break;  
 
+        case 'addBookForm':
+            $adminController = new AdminController();
+            $adminController->showAddBookForm();
+            break; 
+
+        case 'addBook':
+            $adminController = new AdminController();
+            $adminController->addBook();
+            break;  
+            
         case 'deleteBook':
             $adminController = new AdminController();
             $adminController->deleteBook();

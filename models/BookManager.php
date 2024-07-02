@@ -177,12 +177,34 @@ class BookManager extends AbstractEntityManager{
     }
 
     /**
-     * Supprime un livre
+     * Ajouter un livre
+     * @return void
+     */
+    public function addBook(string $title, string $author, string $description, string $availability, ?string $imagePath) : void
+    {
+        $sql = "INSERT INTO book (title, author, description, availability, image, user_id) 
+                VALUES (:title, :author, :description, :availability, :image, :user_id)";
+        
+        $result = $this->db->getPDO()->prepare($sql);
+        $result->bindParam(':title', $title, PDO::PARAM_STR);
+        $result->bindParam(':author', $author, PDO::PARAM_STR);
+        $result->bindParam(':description', $description, PDO::PARAM_STR);
+        $result->bindParam(':availability', $availability, PDO::PARAM_STR);
+        $result->bindParam(':image', $imagePath, PDO::PARAM_STR);
+        $result->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+        
+        $result->execute();
+    }
+    
+
+
+    /**
+     * Supprimer un livre
      * @return void
      */
     public function deleteBook(int $bookId): void
     {
-        // Préparez votre requête de suppression
+
         $sql = "DELETE FROM book 
                 WHERE id = :id";
         $result = $this->db->getPDO()->prepare($sql);

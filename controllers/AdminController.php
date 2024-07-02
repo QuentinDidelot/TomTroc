@@ -266,6 +266,59 @@ class AdminController {
         }
     }
 
+    public function showAddBookForm() : void
+    {
+        $this->checkIfUserIsConnected();
+        
+        
+        $view = new View("Ajouter un livre");
+        $view->render("addBookForm");
+    }
+
+
+    public function addBook() : void
+    {
+        $this->checkIfUserIsConnected();
+        
+        // Récupération des données du formulaire
+        $title = $_POST['title'];
+        $author = $_POST['author'];
+        $description = $_POST['description'];
+        $availability = $_POST['availability'];
+        
+
+        
+        // Gestion de l'upload de l'image
+        $imagePath = null;
+        if (isset($_FILES['new_book_image']) && $_FILES['new_book_image']['error'] === UPLOAD_ERR_OK) {
+            $uploadDir = 'uploads/';
+            $uploadFile = $uploadDir . basename($_FILES['new_book_image']['name']);
+            if (move_uploaded_file($_FILES['new_book_image']['tmp_name'], $uploadFile)) {
+                $imagePath = $uploadFile;
+            } else {
+                $_SESSION['error_message'] = "Échec de l'upload de l'image.";
+                header('Location: index.php?action=addBookForm');
+                exit();
+            }
+        }
+
+        
+        // Validation des données
+        if (empty($title) || empty($author) || empty($description) || empty($availability) || empty($imagePath)) {
+            $_SESSION['error_message'] = "Tous les champs sont obligatoires.";
+            header('Location: index.php?action=addBookForm');
+            exit();
+        }
+
+        $bookManager = new BookManager();
+        $bookManager->addBook($title, $author, $description, $availability, $imagePath);
+
+        Utils::redirect('myAccount');
+        exit();
+    }
+    
+
+
     public function deleteBook() : void
     {
         $this->checkIfUserIsConnected();
