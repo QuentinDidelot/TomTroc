@@ -56,7 +56,7 @@
         </div>
 
         <div class="step">
-            <p>Parcouez les livres disponibles chez d'autres membres.</p>
+            <p>Parcourez les livres disponibles chez d'autres membres.</p>
         </div>
 
         <div class="step">
